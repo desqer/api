@@ -12,8 +12,6 @@ config :logger, level: :warn
 # Configure your database
 config :desqer, Desqer.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "desqer_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
