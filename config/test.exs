@@ -15,3 +15,6 @@ config :desqer, Desqer.Repo,
   database: "desqer_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Reduce round numbers for test speed
+config :comeonin, :bcrypt_log_rounds, 4
