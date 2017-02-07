@@ -4,7 +4,7 @@ defmodule Desqer.ChangesetViewTest do
   import Phoenix.View
 
   test "renders error.json" do
-    rendered = render(Desqer.ChangesetView, "error.json", changeset: user_changeset)
+    rendered = render(Desqer.ChangesetView, "error.json", changeset: user_changeset())
 
     assert rendered == %{errors: %{phone: ["can't be blank"]}}
   end

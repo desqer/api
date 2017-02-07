@@ -10,7 +10,8 @@ defmodule Desqer.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
-     deps: deps()]
+     deps: deps(),
+     docs: docs()]
   end
 
   # Configuration for the OTP application.
@@ -38,6 +39,10 @@ defmodule Desqer.Mixfile do
      {:comeonin, "~> 3.0"},
      {:ex_doc, "~> 0.14", only: :dev},
      {:ex_machina, "~> 1.0", only: :test}]
+  end
+
+  defp docs do
+    [output: "docs"]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
