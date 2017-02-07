@@ -36,6 +36,7 @@ defmodule Desqer.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 3.0"},
+     {:ex_doc, "~> 0.14", only: :dev},
      {:ex_machina, "~> 1.0", only: :test}]
   end
 
