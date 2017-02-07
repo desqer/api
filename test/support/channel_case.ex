@@ -20,10 +20,10 @@ defmodule Desqer.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias Desqer.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import Desqer.Factory
 
 
       # The default endpoint for testing

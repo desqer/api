@@ -5,7 +5,9 @@ defmodule Desqer.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", Desqer do
+  scope "/", Desqer do
     pipe_through :api
+
+    resources "/users", UserController, only: [:show, :create, :update, :delete]
   end
 end

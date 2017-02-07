@@ -35,7 +35,8 @@ defmodule Desqer.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:comeonin, "~> 3.0"}]
+     {:comeonin, "~> 3.0"},
+     {:ex_machina, "~> 1.0", only: :test}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

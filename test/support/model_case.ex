@@ -16,11 +16,10 @@ defmodule Desqer.ModelCase do
 
   using do
     quote do
-      alias Desqer.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import Desqer.Factory
       import Desqer.ModelCase
     end
   end
