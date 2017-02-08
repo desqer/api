@@ -7,6 +7,7 @@ defmodule Desqer.Action.CreateUserTest do
     assert {:name, {"can't be blank", [validation: :required]}} in changeset.errors
     assert {:phone, {"can't be blank", [validation: :required]}} in changeset.errors
     assert {:password, {"can't be blank", [validation: :required]}} in changeset.errors
+
     refute changeset.valid?
   end
 
@@ -24,8 +25,8 @@ defmodule Desqer.Action.CreateUserTest do
   end
 
   test "returns error when phone is taked" do
-    insert(:user, phone: "9991234")
-    {:error, changeset} = Desqer.Action.CreateUser.run(%{name: "Johnny Doe", phone: "9991234", password: "654321"})
+    insert(:user, phone: "5547999551234")
+    {:error, changeset} = Desqer.Action.CreateUser.run(%{name: "Johnny Doe", phone: "5547999551234", password: "654321"})
 
     assert {:phone, {"has already been taken", []}} in changeset.errors
     refute changeset.valid?
@@ -34,14 +35,16 @@ defmodule Desqer.Action.CreateUserTest do
   test "creates user" do
     params = %{
       name: "Johnny Doe",
-      phone: "9991234",
+      phone: "5547999551234",
       password: "654321"
     }
+
     {:ok, user} = Desqer.Action.CreateUser.run(params)
 
     assert user.name == params.name
-    assert user.phone == params.phone
+    assert user.phone.full_number == params.phone
     assert Desqer.Password.check("654321", user)
+
     refute user.professional
     refute user.confirmed
     refute user.deleted

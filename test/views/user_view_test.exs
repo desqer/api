@@ -6,7 +6,7 @@ defmodule Desqer.UserViewTest do
     id: "123",
     name: "John Doe",
     email: "john@doe.com",
-    phone: "5547999554433",
+    phone: %{full_number: "5547999554433"},
     bio: "An awesome pro",
     professional: true,
     confirmed: true,
@@ -15,7 +15,8 @@ defmodule Desqer.UserViewTest do
 
   test "renders show.json" do
     user = struct(Desqer.User, @valid_attrs)
+    data = %{@valid_attrs | phone: @valid_attrs.phone.full_number}
 
-    assert render(Desqer.UserView, "show.json", user: user) == %{data: @valid_attrs}
+    assert render(Desqer.UserView, "show.json", user: user) == %{data: data}
   end
 end

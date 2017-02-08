@@ -2,7 +2,7 @@ defmodule Desqer.User do
   use Desqer.Web, :model
 
   schema "users" do
-    field :phone, :string
+    field :phone, Desqer.Type.Phone
     field :password_hash, :string
     field :name, :string
     field :email, :string

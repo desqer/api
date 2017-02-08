@@ -9,7 +9,7 @@ defmodule Desqer.UserView do
     %{id: user.id,
       name: user.name,
       email: user.email,
-      phone: user.phone,
+      phone: user.phone.full_number,
       bio: user.bio,
       professional: user.professional,
       confirmed: user.confirmed,

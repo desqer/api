@@ -46,9 +46,9 @@ defmodule Desqer.Action.UpdateUserTest do
   end
 
   test "returns error when phone is taked" do
-    insert(:user, phone: "9991234")
+    insert(:user, phone: "5547999551234")
     user = insert(:user)
-    {:error, changeset} = Desqer.Action.UpdateUser.run(user.id, %{current_password: "1234", phone: "9991234"})
+    {:error, changeset} = Desqer.Action.UpdateUser.run(user.id, %{current_password: "1234", phone: "5547999551234"})
 
     assert {:phone, {"has already been taken", []}} in changeset.errors
     refute changeset.valid?
@@ -57,7 +57,7 @@ defmodule Desqer.Action.UpdateUserTest do
   test "updates user" do
     params = %{
       current_password: "1234",
-      phone: "9991234",
+      phone: "5547999551234",
       password: "654321",
       name: "Johnny Doe",
       email: "johnny@doe.com",
@@ -65,9 +65,10 @@ defmodule Desqer.Action.UpdateUserTest do
       professional: false
     }
     user = insert(:user)
+
     {:ok, user} = Desqer.Action.UpdateUser.run(user.id, params)
 
-    assert user.phone == params.phone
+    assert user.phone.full_number == params.phone
     assert user.name == params.name
     assert user.email == params.email
     assert user.bio == params.bio
