@@ -73,6 +73,6 @@ defmodule Desqer.Action.UpdateUserTest do
     assert user.email == params.email
     assert user.bio == params.bio
     assert user.professional == params.professional
-    assert Desqer.Password.check("654321", user)
+    assert Desqer.Password.check("654321", user.password_hash)
   end
 end

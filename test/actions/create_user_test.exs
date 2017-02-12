@@ -43,7 +43,7 @@ defmodule Desqer.Action.CreateUserTest do
 
     assert user.name == params.name
     assert user.phone.full_number == params.phone
-    assert Desqer.Password.check("654321", user)
+    assert Desqer.Password.check("654321", user.password_hash)
 
     refute user.professional
     refute user.confirmed

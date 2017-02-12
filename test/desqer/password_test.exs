@@ -17,19 +17,7 @@ defmodule Desqer.PasswordTest do
     refute Desqer.Password.check("1234", nil)
     refute Desqer.Password.check("1234", "")
     refute Desqer.Password.check("foobar", @password_hash)
+
     assert Desqer.Password.check("1234", @password_hash)
-  end
-
-  test "#check with map" do
-    refute Desqer.Password.check("1234", %{password_hash: nil})
-    refute Desqer.Password.check("1234", %{password_hash: ""})
-    refute Desqer.Password.check(nil, %{password_hash: @password_hash})
-    refute Desqer.Password.check("", %{password_hash: @password_hash})
-    refute Desqer.Password.check("foobar", %{password_hash: @password_hash})
-    assert Desqer.Password.check("1234", %{password_hash: @password_hash})
-  end
-
-  test "#fake_check" do
-    refute Desqer.Password.fake_check
   end
 end
