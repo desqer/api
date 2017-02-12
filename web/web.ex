@@ -33,7 +33,6 @@ defmodule Desqer.Web do
     quote do
       use Phoenix.Controller
 
-      alias Desqer.Repo
       import Ecto
       import Ecto.Query
 
@@ -65,7 +64,6 @@ defmodule Desqer.Web do
     quote do
       use Phoenix.Channel
 
-      alias Desqer.Repo
       import Ecto
       import Ecto.Query
       import Desqer.Gettext

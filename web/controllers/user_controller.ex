@@ -15,7 +15,6 @@ defmodule Desqer.UserController do
         }
       }
   """
-
   use Desqer.Web, :controller
 
   plug :scrub_params, "user" when action in [:create, :update]
