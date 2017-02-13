@@ -5,9 +5,24 @@ defmodule Desqer.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_auth do
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.EnsureAuthenticated, handler: Desqer.GuardianHandler
+    plug Guardian.Plug.LoadResource
+    plug Guardian.Plug.EnsureResource, handler: Desqer.GuardianHandler
+  end
+
   scope "/", Desqer do
     pipe_through :api
 
-    resources "/users", UserController, only: [:show, :create, :update, :delete]
+    post "/users", UserController, :create
+    post "/sessions", SessionController, :create
+  end
+
+  scope "/", Desqer do
+    pipe_through [:api, :api_auth]
+
+    resources "/users", UserController, only: [:show, :update, :delete]
+    delete "/sessions", SessionController, :delete
   end
 end

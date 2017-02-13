@@ -26,6 +26,12 @@ config :logger, :console,
 config :phoenix, :generators,
   binary_id: true
 
+config :guardian, Guardian,
+  issuer: "Desqer",
+  ttl: {30, :days},
+  serializer: Desqer.GuardianSerializer,
+  secret_key: "Rry5w/4+0RGzmPnuIMhcyTdgyiKMxBia27J/oAYwBG9TuVosJ2sDo9ZCS8e3ltxl"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
