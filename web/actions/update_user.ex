@@ -9,7 +9,7 @@ defmodule Desqer.Action.UpdateUser do
 
   defp changeset(user, params) do
     user
-    |> cast(params, [:phone, :password, :current_password, :name, :email, :bio, :professional])
+    |> cast(params, [:name, :phone, :email, :password, :current_password])
     |> validate_required([:current_password])
     |> validate_length(:password, min: 6)
     |> validate_format(:email, ~r/@/)

@@ -139,8 +139,6 @@ defmodule Desqer.UserController do
           "name": "Jane Doe",
           "phone": "5547999871234",
           "email": "jane@doe.com",
-          "bio": "An awesome professional",
-          "professional": true,
           "password": "bar456",
           "current_password": "foo123"
         }

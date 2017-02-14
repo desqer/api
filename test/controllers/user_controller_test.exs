@@ -54,7 +54,7 @@ defmodule Desqer.UserControllerTest do
     assert data["phone"] == "5547999551234"
   end
 
-  test "renders errors on update when data is invalid", %{signed_conn: conn, user: user} do
+  test "renders errors on update when data is invalid", %{signed_conn: conn} do
     conn = put conn, user_path(conn, :update), user: %{}
     errors = json_response(conn, 422)["errors"]
 

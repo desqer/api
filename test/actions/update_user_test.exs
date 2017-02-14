@@ -51,13 +51,11 @@ defmodule Desqer.Action.UpdateUserTest do
   test "updates user" do
     user = insert(:user)
     params = %{
-      current_password: "1234",
-      phone: "5547999551234",
-      password: "654321",
       name: "Johnny Doe",
+      phone: "5547999551234",
       email: "johnny@doe.com",
-      bio: "Adorable person",
-      professional: false
+      password: "654321",
+      current_password: "1234"
     }
 
     {:ok, user} = Desqer.Action.UpdateUser.run(user, params)
@@ -65,8 +63,6 @@ defmodule Desqer.Action.UpdateUserTest do
     assert user.phone.full_number == params.phone
     assert user.name == params.name
     assert user.email == params.email
-    assert user.bio == params.bio
-    assert user.professional == params.professional
     assert Desqer.Password.check("654321", user.password_hash)
   end
 end
