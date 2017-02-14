@@ -90,8 +90,7 @@ defmodule Desqer.SessionController do
   def delete(conn, _params) do
     conn
     |> Guardian.Plug.current_resource
-    |> Ecto.Changeset.change(revoked: true)
-    |> Desqer.Repo.update
+    |> Desqer.Action.DeleteSession.run
 
     json conn, %{detail: "Logged out"}
   end
