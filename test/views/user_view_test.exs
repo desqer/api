@@ -13,6 +13,13 @@ defmodule Desqer.UserViewTest do
     deleted: false
   }
 
+  test "renders preview.json" do
+    user = struct(Desqer.User, @valid_attrs)
+    data = %{name: user.name, phone: user.phone.full_number}
+
+    assert render(Desqer.UserView, "preview.json", user: user) == %{data: data}
+  end
+
   test "renders show.json" do
     user = struct(Desqer.User, @valid_attrs)
     data = %{@valid_attrs | phone: @valid_attrs.phone.full_number}

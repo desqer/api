@@ -11,6 +11,19 @@ defmodule Desqer.UserControllerTest do
     {:ok, conn: conn, signed_conn: signed_conn, user: session.user}
   end
 
+  test "previews user", %{conn: conn, user: user} do
+    conn = get conn, user_path(conn, :preview, "5547999874321")
+    data = json_response(conn, 200)["data"]
+
+    assert data["name"] == user.name
+  end
+
+  test "renders not found when user does not exist", %{conn: conn} do
+    assert_error_sent 404, fn ->
+      get conn, user_path(conn, :preview, "5547999871234")
+    end
+  end
+
   test "shows user", %{signed_conn: conn, user: user} do
     conn = get conn, user_path(conn, :show)
     data = json_response(conn, 200)["data"]

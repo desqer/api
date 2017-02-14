@@ -15,7 +15,9 @@ defmodule Desqer.Router do
   scope "/", Desqer do
     pipe_through :api
 
+    get "/users/:phone", UserController, :preview
     post "/users", UserController, :create
+
     post "/sessions", SessionController, :create
   end
 

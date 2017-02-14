@@ -7,6 +7,35 @@ defmodule Desqer.UserController do
   plug :scrub_params, "user" when action in [:create, :update]
 
   @doc """
+  Previews `user`.
+
+  Endpoint example:
+
+      GET /users/5547999874321
+
+  Success response `code 200` example:
+
+      {
+        "data": {
+          "name": "John Doe",
+          "phone": "55479995874321"
+        }
+      }
+
+  Error response `code 404` example:
+
+      {
+        "errors": {
+          "detail": "Resource not found"
+        }
+      }
+  """
+  def preview(conn, %{"phone" => phone}) do
+    user = Desqer.User |> Desqer.Repo.get_by!(phone: phone)
+    render(conn, "preview.json", user: user)
+  end
+
+  @doc """
   Shows `user`.
 
   Endpoint example:
