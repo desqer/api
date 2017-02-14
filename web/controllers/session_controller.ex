@@ -73,7 +73,6 @@ defmodule Desqer.SessionController do
 
       authorization: Bearer eyJhbGciOiJIUzUxMiI5c...
 
-
   Success response `code 200` example:
 
       {

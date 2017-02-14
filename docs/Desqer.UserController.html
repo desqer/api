@@ -66,19 +66,7 @@
 
       
         <section id="moduledoc">
-          <p>Always returns <code class="inline">user</code> data. Example:</p>
-<pre><code class="elixir">{
-  &quot;data&quot;: {
-    &quot;id&quot;: &quot;6610856f-23e6-499d-b7fd-eeba168a756b&quot;,
-    &quot;phone&quot;: &quot;5547999553565&quot;,
-    &quot;name&quot;: &quot;John&quot;,
-    &quot;email&quot;: &quot;john@doe.com&quot;,
-    &quot;professional&quot;: true,
-    &quot;bio&quot;: &quot;An awesome teacher&quot;,
-    &quot;confirmed&quot;: true,
-    &quot;deleted&quot;: false
-  }
-}</code></pre>
+          <p>Endpoints for users.</p>
 
         </section>
       
@@ -121,7 +109,7 @@
     <a href="#show/2">show(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Fetches <code class="inline">user</code></p>
+    <div class="summary-synopsis"><p>Shows <code class="inline">user</code></p>
 </div>
   
 </div>
@@ -168,14 +156,34 @@
   </div>
   <section class="docstring">
     <p>Creates <code class="inline">user</code>.</p>
-<p>Expects <code class="inline">user key</code> with params. Example:</p>
-<pre><code class="elixir">POST /users
-
-{
+<p>Endpoint example:</p>
+<pre><code class="elixir">POST /users</code></pre>
+<p>Params example:</p>
+<pre><code class="elixir">{
   &quot;user&quot;: {
-    &quot;name&quot;: &quot;John&quot;,
-    &quot;phone&quot;: &quot;5547999553565&quot;,
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;phone&quot;: &quot;5547999874321&quot;,
     &quot;password&quot;: &quot;foo123&quot;
+  }
+}</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;phone&quot;: &quot;55479995874321&quot;,
+    &quot;email&quot;: null,
+    &quot;bio&quot;: null,
+    &quot;professional&quot;: false,
+    &quot;confirmed&quot;: false,
+    &quot;deleted&quot;: false
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 422</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;phone&quot;: [&quot;has already been taken&quot;],
+    &quot;password&quot;: [&quot;can&#39;t be blank&quot;]
   }
 }</code></pre>
 
@@ -194,8 +202,29 @@
   </div>
   <section class="docstring">
     <p>Deletes <code class="inline">user</code>.</p>
-<p>Expects <code class="inline">user id</code>. Example:</p>
+<p>Endpoint example:</p>
 <pre><code class="elixir">DELETE /users/6610856f-23e6-499d-b7fd-eeba168a756b</code></pre>
+<p>Request headers example:</p>
+<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;phone&quot;: &quot;55479995871234&quot;,
+    &quot;email&quot;: &quot;jane@doe.com&quot;,
+    &quot;bio&quot;: &quot;An awesome professional&quot;,
+    &quot;professional&quot;: true,
+    &quot;confirmed&quot;: false,
+    &quot;deleted&quot;: true
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 401</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;detail&quot;: &quot;Resource not authorized&quot;
+  }
+}</code></pre>
 
   </section>
 </div>
@@ -211,9 +240,30 @@
     
   </div>
   <section class="docstring">
-    <p>Fetches <code class="inline">user</code>.</p>
-<p>Expects <code class="inline">user id</code>. Example:</p>
+    <p>Shows <code class="inline">user</code>.</p>
+<p>Endpoint example:</p>
 <pre><code class="elixir">GET /users/6610856f-23e6-499d-b7fd-eeba168a756b</code></pre>
+<p>Request headers example:</p>
+<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;phone&quot;: &quot;55479995874321&quot;,
+    &quot;email&quot;: &quot;john@doe.com&quot;,
+    &quot;bio&quot;: &quot;An awesome professional&quot;
+    &quot;professional&quot;: true,
+    &quot;confirmed&quot;: true,
+    &quot;deleted&quot;: false
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 401</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;detail&quot;: &quot;Resource not authorized&quot;
+  }
+}</code></pre>
 
   </section>
 </div>
@@ -230,15 +280,46 @@
   </div>
   <section class="docstring">
     <p>Updates <code class="inline">user</code>.</p>
-<p>Expects <code class="inline">user id</code> and <code class="inline">user key</code> with params. Example:</p>
-<pre><code class="elixir">PUT /users/6610856f-23e6-499d-b7fd-eeba168a756b
-
-{
+<p>Endpoint example:</p>
+<pre><code class="elixir">PUT /users/6610856f-23e6-499d-b7fd-eeba168a756b</code></pre>
+<p>Request headers example:</p>
+<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
+<p>Params example:</p>
+<pre><code class="elixir">{
   &quot;user&quot;: {
-    &quot;name&quot;: &quot;Jane&quot;,
-    &quot;phone&quot;: &quot;5547999443464&quot;,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;phone&quot;: &quot;5547999871234&quot;,
+    &quot;email&quot;: &quot;jane@doe.com&quot;,
+    &quot;bio&quot;: &quot;An awesome professional&quot;,
+    &quot;professional&quot;: true,
     &quot;password&quot;: &quot;bar456&quot;,
     &quot;current_password&quot;: &quot;foo123&quot;
+  }
+}</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;phone&quot;: &quot;55479995871234&quot;,
+    &quot;email&quot;: &quot;jane@doe.com&quot;,
+    &quot;bio&quot;: &quot;An awesome professional&quot;,
+    &quot;professional&quot;: true,
+    &quot;confirmed&quot;: false,
+    &quot;deleted&quot;: false
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 422</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;phone&quot;: [&quot;has already been taken&quot;],
+    &quot;current_password&quot;: [&quot;can&#39;t be blank&quot;]
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 401</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;detail&quot;: &quot;Resource not authorized&quot;
   }
 }</code></pre>
 

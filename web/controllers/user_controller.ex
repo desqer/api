@@ -1,30 +1,44 @@
 defmodule Desqer.UserController do
   @moduledoc """
-  Always returns `user` data. Example:
-
-      {
-        "data": {
-          "id": "6610856f-23e6-499d-b7fd-eeba168a756b",
-          "phone": "5547999553565",
-          "name": "John",
-          "email": "john@doe.com",
-          "professional": true,
-          "bio": "An awesome teacher",
-          "confirmed": true,
-          "deleted": false
-        }
-      }
+  Endpoints for users.
   """
   use Desqer.Web, :controller
 
   plug :scrub_params, "user" when action in [:create, :update]
 
   @doc """
-  Fetches `user`.
+  Shows `user`.
 
-  Expects `user id`. Example:
+  Endpoint example:
 
       GET /users/6610856f-23e6-499d-b7fd-eeba168a756b
+
+  Request headers example:
+
+      authorization: Bearer eyJhbGciOiJIUzUxMiI5c...
+
+  Success response `code 200` example:
+
+      {
+        "data": {
+          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+          "name": "John Doe",
+          "phone": "55479995874321",
+          "email": "john@doe.com",
+          "bio": "An awesome professional"
+          "professional": true,
+          "confirmed": true,
+          "deleted": false
+        }
+      }
+
+  Error response `code 401` example:
+
+      {
+        "errors": {
+          "detail": "Resource not authorized"
+        }
+      }
   """
   def show(conn, %{"id" => id}) do
     user = Desqer.Repo.get!(Desqer.User, id)
@@ -34,15 +48,41 @@ defmodule Desqer.UserController do
   @doc """
   Creates `user`.
 
-  Expects `user key` with params. Example:
+  Endpoint example:
 
       POST /users
 
+  Params example:
+
       {
         "user": {
-          "name": "John",
-          "phone": "5547999553565",
+          "name": "John Doe",
+          "phone": "5547999874321",
           "password": "foo123"
+        }
+      }
+
+  Success response `code 200` example:
+
+      {
+        "data": {
+          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+          "name": "John Doe",
+          "phone": "55479995874321",
+          "email": null,
+          "bio": null,
+          "professional": false,
+          "confirmed": false,
+          "deleted": false
+        }
+      }
+
+  Error response `code 422` example:
+
+      {
+        "errors": {
+          "phone": ["has already been taken"],
+          "password": ["can't be blank"]
         }
       }
   """
@@ -55,16 +95,57 @@ defmodule Desqer.UserController do
   @doc """
   Updates `user`.
 
-  Expects `user id` and `user key` with params. Example:
+  Endpoint example:
 
       PUT /users/6610856f-23e6-499d-b7fd-eeba168a756b
 
+  Request headers example:
+
+      authorization: Bearer eyJhbGciOiJIUzUxMiI5c...
+
+  Params example:
+
       {
         "user": {
-          "name": "Jane",
-          "phone": "5547999443464",
+          "name": "Jane Doe",
+          "phone": "5547999871234",
+          "email": "jane@doe.com",
+          "bio": "An awesome professional",
+          "professional": true,
           "password": "bar456",
           "current_password": "foo123"
+        }
+      }
+
+  Success response `code 200` example:
+
+      {
+        "data": {
+          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+          "name": "Jane Doe",
+          "phone": "55479995871234",
+          "email": "jane@doe.com",
+          "bio": "An awesome professional",
+          "professional": true,
+          "confirmed": false,
+          "deleted": false
+        }
+      }
+
+  Error response `code 422` example:
+
+      {
+        "errors": {
+          "phone": ["has already been taken"],
+          "current_password": ["can't be blank"]
+        }
+      }
+
+  Error response `code 401` example:
+
+      {
+        "errors": {
+          "detail": "Resource not authorized"
         }
       }
   """
@@ -77,9 +158,36 @@ defmodule Desqer.UserController do
   @doc """
   Deletes `user`.
 
-  Expects `user id`. Example:
+  Endpoint example:
 
       DELETE /users/6610856f-23e6-499d-b7fd-eeba168a756b
+
+  Request headers example:
+
+      authorization: Bearer eyJhbGciOiJIUzUxMiI5c...
+
+  Success response `code 200` example:
+
+      {
+        "data": {
+          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+          "name": "Jane Doe",
+          "phone": "55479995871234",
+          "email": "jane@doe.com",
+          "bio": "An awesome professional",
+          "professional": true,
+          "confirmed": false,
+          "deleted": true
+        }
+      }
+
+  Error response `code 401` example:
+
+      {
+        "errors": {
+          "detail": "Resource not authorized"
+        }
+      }
   """
   def delete(conn, %{"id" => id}) do
     id
