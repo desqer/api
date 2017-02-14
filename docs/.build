@@ -4,13 +4,14 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-d0abde019c.js
+dist/sidebar_items-25f319d6d4.js
 api-reference.html
 index.html
 404.html
 Desqer.html
 Desqer.Action.CreateSession.html
 Desqer.Action.CreateUser.html
+Desqer.Action.DeleteSession.html
 Desqer.Action.DeleteUser.html
 Desqer.Action.UpdateUser.html
 Desqer.ChangesetView.html

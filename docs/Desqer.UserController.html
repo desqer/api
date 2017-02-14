@@ -8,7 +8,7 @@
     <title>Desqer.UserController – desqer v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-d0abde019c.js"></script>
+    <script src="dist/sidebar_items-25f319d6d4.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -97,7 +97,7 @@
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#delete/2">delete(conn, map)</a>
+    <a href="#delete/2">delete(conn, params)</a>
   </div>
   
     <div class="summary-synopsis"><p>Deletes <code class="inline">user</code></p>
@@ -106,7 +106,16 @@
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#show/2">show(conn, map)</a>
+    <a href="#preview/2">preview(conn, map)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Previews <code class="inline">user</code></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#show/2">show(conn, params)</a>
   </div>
   
     <div class="summary-synopsis"><p>Shows <code class="inline">user</code></p>
@@ -195,7 +204,7 @@
     <a href="#delete/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">delete(conn, map)</span>
+    <span class="signature">delete(conn, params)</span>
     
     
     
@@ -203,7 +212,7 @@
   <section class="docstring">
     <p>Deletes <code class="inline">user</code>.</p>
 <p>Endpoint example:</p>
-<pre><code class="elixir">DELETE /users/6610856f-23e6-499d-b7fd-eeba168a756b</code></pre>
+<pre><code class="elixir">DELETE /users</code></pre>
 <p>Request headers example:</p>
 <pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
 <p>Success response <code class="inline">code 200</code> example:</p>
@@ -228,13 +237,44 @@
 
   </section>
 </div>
+<div class="detail" id="preview/2">
+  
+  <div class="detail-header">
+    <a href="#preview/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">preview(conn, map)</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Previews <code class="inline">user</code>.</p>
+<p>Endpoint example:</p>
+<pre><code class="elixir">GET /users/5547999874321</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: {
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;phone&quot;: &quot;55479995874321&quot;
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 404</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;detail&quot;: &quot;Resource not found&quot;
+  }
+}</code></pre>
+
+  </section>
+</div>
 <div class="detail" id="show/2">
   
   <div class="detail-header">
     <a href="#show/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">show(conn, map)</span>
+    <span class="signature">show(conn, params)</span>
     
     
     
@@ -242,7 +282,7 @@
   <section class="docstring">
     <p>Shows <code class="inline">user</code>.</p>
 <p>Endpoint example:</p>
-<pre><code class="elixir">GET /users/6610856f-23e6-499d-b7fd-eeba168a756b</code></pre>
+<pre><code class="elixir">GET /users</code></pre>
 <p>Request headers example:</p>
 <pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
 <p>Success response <code class="inline">code 200</code> example:</p>
@@ -281,7 +321,7 @@
   <section class="docstring">
     <p>Updates <code class="inline">user</code>.</p>
 <p>Endpoint example:</p>
-<pre><code class="elixir">PUT /users/6610856f-23e6-499d-b7fd-eeba168a756b</code></pre>
+<pre><code class="elixir">PUT /users</code></pre>
 <p>Request headers example:</p>
 <pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
 <p>Params example:</p>
