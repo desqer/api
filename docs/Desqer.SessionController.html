@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Desqer.ErrorHelpers – desqer v0.0.1</title>
+    <title>Desqer.SessionController – desqer v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-d0abde019c.js"></script>
@@ -59,14 +59,14 @@
 
       <h1>
         <small class="visible-xs">desqer v0.0.1</small>
-        Desqer.ErrorHelpers
+        Desqer.SessionController
         
         
       </h1>
 
       
         <section id="moduledoc">
-          <p>Conveniences for translating and building error messages.</p>
+          <p>Endpoints for sessions.</p>
 
         </section>
       
@@ -88,10 +88,19 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#translate_error/1">translate_error(arg)</a>
+    <a href="#create/2">create(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Translates an error message using gettext</p>
+    <div class="summary-synopsis"><p>Signs in <code class="inline">user</code></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete/2">delete(conn, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Signs out <code class="inline">user</code></p>
 </div>
   
 </div>
@@ -116,19 +125,80 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="translate_error/1">
+          <div class="detail" id="create/2">
   
   <div class="detail-header">
-    <a href="#translate_error/1" class="detail-link" title="Link to this function">
+    <a href="#create/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">translate_error(arg)</span>
+    <span class="signature">create(conn, map)</span>
     
     
     
   </div>
   <section class="docstring">
-    <p>Translates an error message using gettext.</p>
+    <p>Signs in <code class="inline">user</code>.</p>
+<p>Endpoint example:</p>
+<pre><code class="elixir">POST /sessions</code></pre>
+<p>Params example:</p>
+<pre><code class="elixir">{
+  &quot;user&quot;: {
+    &quot;phone&quot;: &quot;+55 47 99987-4321&quot;,
+    &quot;password&quot;: &quot;foo123&quot;
+  }
+}</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;jwt&quot;: &quot;eyJhbGciOiJIUzUxMiI5c...&quot;,
+  &quot;exp&quot;: 1489573943,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;phone&quot;: &quot;55479995874321&quot;,
+    &quot;email&quot;: &quot;john@doe.com&quot;,
+    &quot;bio&quot;: &quot;An awesome professional&quot;
+    &quot;professional&quot;: true,
+    &quot;confirmed&quot;: true,
+    &quot;deleted&quot;: false,
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 422</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;phone&quot;: [&quot;can&#39;t be blank&quot;],
+    &quot;password&quot;: [&quot;can&#39;t be blank&quot;]
+  }
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="delete/2">
+  
+  <div class="detail-header">
+    <a href="#delete/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">delete(conn, params)</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Signs out <code class="inline">user</code>.</p>
+<p>Endpoint example:</p>
+<pre><code class="elixir">DELETE /sessions</code></pre>
+<p>Headers example:</p>
+<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;detail&quot;: &quot;Logged out&quot;
+}</code></pre>
+<p>Error response <code class="inline">code 401</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;detail&quot;: &quot;Resource not authorized&quot;
+  }
+}</code></pre>
 
   </section>
 </div>

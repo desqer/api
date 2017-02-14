@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Desqer.ErrorHelpers – desqer v0.0.1</title>
+    <title>Desqer.GuardianSerializer – desqer v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-d0abde019c.js"></script>
@@ -59,16 +59,11 @@
 
       <h1>
         <small class="visible-xs">desqer v0.0.1</small>
-        Desqer.ErrorHelpers
+        Desqer.GuardianSerializer
         
         
       </h1>
 
-      
-        <section id="moduledoc">
-          <p>Conveniences for translating and building error messages.</p>
-
-        </section>
       
 
       
@@ -88,10 +83,19 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#translate_error/1">translate_error(arg)</a>
+    <a href="#for_token/1">for_token(session)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Translates an error message using gettext</p>
+    <div class="summary-synopsis"><p>Serializes the object into the token. Suggestion: “User:2”</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#from_token/1">from_token(arg1)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>De-serializes the object from a token</p>
 </div>
   
 </div>
@@ -116,19 +120,37 @@
             </a>
             Functions
           </h1>
-          <div class="detail" id="translate_error/1">
+          <div class="detail" id="for_token/1">
   
   <div class="detail-header">
-    <a href="#translate_error/1" class="detail-link" title="Link to this function">
+    <a href="#for_token/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">translate_error(arg)</span>
+    <span class="signature">for_token(session)</span>
     
     
     
   </div>
   <section class="docstring">
-    <p>Translates an error message using gettext.</p>
+    <p>Serializes the object into the token. Suggestion: “User:2”</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/guardian/0.14.2/Guardian.Serializer.html#c:for_token/1"><code class="inline">Guardian.Serializer.for_token/1</code></a>.</p>
+
+  </section>
+</div>
+<div class="detail" id="from_token/1">
+  
+  <div class="detail-header">
+    <a href="#from_token/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">from_token(arg1)</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>De-serializes the object from a token</p>
+<p>Callback implementation for <a href="https://hexdocs.pm/guardian/0.14.2/Guardian.Serializer.html#c:from_token/1"><code class="inline">Guardian.Serializer.from_token/1</code></a>.</p>
 
   </section>
 </div>
