@@ -1,15 +1,7 @@
 defmodule Desqer.Action.UpdateUser do
   import Ecto.Changeset
 
-  def run(id, params) do
-    get_user!(id) |> update(params)
-  end
-
-  defp get_user!(id) do
-    Desqer.User |> Desqer.Repo.get!(id)
-  end
-
-  defp update(user, params) do
+  def run(user, params) do
     user
     |> changeset(params)
     |> Desqer.Repo.update

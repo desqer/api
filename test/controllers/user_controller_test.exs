@@ -12,16 +12,10 @@ defmodule Desqer.UserControllerTest do
   end
 
   test "shows user", %{signed_conn: conn, user: user} do
-    conn = get conn, user_path(conn, :show, user)
+    conn = get conn, user_path(conn, :show)
     data = json_response(conn, 200)["data"]
 
     assert data["id"] == user.id
-  end
-
-  test "renders not found when user does not exist", %{signed_conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, user_path(conn, :show, "11111111-1111-1111-1111-111111111111")
-    end
   end
 
   test "creates and renders user", %{conn: conn} do
@@ -40,7 +34,7 @@ defmodule Desqer.UserControllerTest do
   end
 
   test "updates and renders user", %{signed_conn: conn, user: user} do
-    conn = put conn, user_path(conn, :update, user), user: %{current_password: "1234", phone: "5547999551234"}
+    conn = put conn, user_path(conn, :update), user: %{current_password: "1234", phone: "5547999551234"}
     data = json_response(conn, 200)["data"]
 
     assert data["id"] == user.id
@@ -48,14 +42,14 @@ defmodule Desqer.UserControllerTest do
   end
 
   test "renders errors on update when data is invalid", %{signed_conn: conn, user: user} do
-    conn = put conn, user_path(conn, :update, user), user: %{}
+    conn = put conn, user_path(conn, :update), user: %{}
     errors = json_response(conn, 422)["errors"]
 
     refute Enum.empty?(errors)
   end
 
   test "deletes and renders user", %{signed_conn: conn, user: user} do
-    conn = delete conn, user_path(conn, :delete, user)
+    conn = delete conn, user_path(conn, :delete)
     data = json_response(conn, 200)["data"]
 
     assert data["id"] == user.id

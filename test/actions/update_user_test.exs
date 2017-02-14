@@ -1,15 +1,9 @@
 defmodule Desqer.Action.UpdateUserTest do
   use Desqer.ModelCase, async: true
 
-  test "raises error when resource does not exist" do
-    assert_raise Ecto.NoResultsError, fn ->
-      Desqer.Action.UpdateUser.run("6610856f-23e6-499d-b7fd-eeba168a756b", %{})
-    end
-  end
-
   test "returns error when current_password is absent" do
     user = insert(:user)
-    {:error, changeset} = Desqer.Action.UpdateUser.run(user.id, %{})
+    {:error, changeset} = Desqer.Action.UpdateUser.run(user, %{})
 
     assert {:current_password, {"can't be blank", [validation: :required]}} in changeset.errors
     refute changeset.valid?
@@ -17,7 +11,7 @@ defmodule Desqer.Action.UpdateUserTest do
 
   test "returns error when password is too short" do
     user = insert(:user)
-    {:error, changeset} = Desqer.Action.UpdateUser.run(user.id, %{password: "123"})
+    {:error, changeset} = Desqer.Action.UpdateUser.run(user, %{password: "123"})
 
     assert {:password, {"should be at least %{count} character(s)", [count: 6, validation: :length, min: 6]}} in changeset.errors
     refute changeset.valid?
@@ -25,7 +19,7 @@ defmodule Desqer.Action.UpdateUserTest do
 
   test "returns error when email is invalid" do
     user = insert(:user)
-    {:error, changeset} = Desqer.Action.UpdateUser.run(user.id, %{email: "johndoe.com"})
+    {:error, changeset} = Desqer.Action.UpdateUser.run(user, %{email: "johndoe.com"})
 
     assert {:email, {"has invalid format", [validation: :format]}} in changeset.errors
     refute changeset.valid?
@@ -33,14 +27,14 @@ defmodule Desqer.Action.UpdateUserTest do
 
   test "lowercases email" do
     user = insert(:user)
-    {:error, changeset} = Desqer.Action.UpdateUser.run(user.id, %{email: "JOHN@DOE.COM"})
+    {:error, changeset} = Desqer.Action.UpdateUser.run(user, %{email: "JOHN@DOE.COM"})
 
     assert {:email, "john@doe.com"} in changeset.changes
   end
 
   test "puts password hash" do
     user = insert(:user)
-    {:error, changeset} = Desqer.Action.UpdateUser.run(user.id, %{password: "foobar"})
+    {:error, changeset} = Desqer.Action.UpdateUser.run(user, %{password: "foobar"})
 
     assert String.length(changeset.changes[:password_hash]) == 60
   end
@@ -48,13 +42,14 @@ defmodule Desqer.Action.UpdateUserTest do
   test "returns error when phone is taked" do
     insert(:user, phone: "5547999551234")
     user = insert(:user)
-    {:error, changeset} = Desqer.Action.UpdateUser.run(user.id, %{current_password: "1234", phone: "5547999551234"})
+    {:error, changeset} = Desqer.Action.UpdateUser.run(user, %{current_password: "1234", phone: "5547999551234"})
 
     assert {:phone, {"has already been taken", []}} in changeset.errors
     refute changeset.valid?
   end
 
   test "updates user" do
+    user = insert(:user)
     params = %{
       current_password: "1234",
       phone: "5547999551234",
@@ -64,9 +59,8 @@ defmodule Desqer.Action.UpdateUserTest do
       bio: "Adorable person",
       professional: false
     }
-    user = insert(:user)
 
-    {:ok, user} = Desqer.Action.UpdateUser.run(user.id, params)
+    {:ok, user} = Desqer.Action.UpdateUser.run(user, params)
 
     assert user.phone.full_number == params.phone
     assert user.name == params.name

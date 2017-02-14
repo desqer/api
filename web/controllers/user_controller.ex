@@ -11,7 +11,7 @@ defmodule Desqer.UserController do
 
   Endpoint example:
 
-      GET /users/6610856f-23e6-499d-b7fd-eeba168a756b
+      GET /users
 
   Request headers example:
 
@@ -40,8 +40,8 @@ defmodule Desqer.UserController do
         }
       }
   """
-  def show(conn, %{"id" => id}) do
-    user = Desqer.Repo.get!(Desqer.User, id)
+  def show(conn, _params) do
+    user = current_user(conn)
     render(conn, "show.json", user: user)
   end
 
@@ -97,7 +97,7 @@ defmodule Desqer.UserController do
 
   Endpoint example:
 
-      PUT /users/6610856f-23e6-499d-b7fd-eeba168a756b
+      PUT /users
 
   Request headers example:
 
@@ -149,8 +149,9 @@ defmodule Desqer.UserController do
         }
       }
   """
-  def update(conn, %{"id" => id, "user" => user_params}) do
-    id
+  def update(conn, %{"user" => user_params}) do
+    conn
+    |> current_user
     |> Desqer.Action.UpdateUser.run(user_params)
     |> render_response(conn)
   end
@@ -160,7 +161,7 @@ defmodule Desqer.UserController do
 
   Endpoint example:
 
-      DELETE /users/6610856f-23e6-499d-b7fd-eeba168a756b
+      DELETE /users
 
   Request headers example:
 
@@ -189,8 +190,9 @@ defmodule Desqer.UserController do
         }
       }
   """
-  def delete(conn, %{"id" => id}) do
-    id
+  def delete(conn, _params) do
+    conn
+    |> current_user
     |> Desqer.Action.DeleteUser.run
     |> render_response(conn)
   end
@@ -206,5 +208,9 @@ defmodule Desqer.UserController do
     conn
     |> put_status(:unprocessable_entity)
     |> render(Desqer.ChangesetView, "error.json", changeset: changeset)
+  end
+
+  defp current_user(conn) do
+    Guardian.Plug.current_resource(conn).user
   end
 end

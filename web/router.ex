@@ -22,7 +22,10 @@ defmodule Desqer.Router do
   scope "/", Desqer do
     pipe_through [:api, :api_auth]
 
-    resources "/users", UserController, only: [:show, :update, :delete]
+    get "/users", UserController, :show
+    put "/users", UserController, :update
+    delete "/users", UserController, :delete
+
     delete "/sessions", SessionController, :delete
   end
 end
