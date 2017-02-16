@@ -9,14 +9,7 @@ defmodule Desqer.Venue do
     field :name, :string
     field :lat, :float
     field :lon, :float
-    field :street, :string
-    field :number, :string
-    field :complement, :string
-    field :neighborhood, :string
-    field :city, :string
-    field :state, :string
-    field :country, :string
-    field :zip_code, :string
+    field :address, :string
     field :deleted, :boolean, default: false
 
     timestamps()
