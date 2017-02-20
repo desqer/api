@@ -2,6 +2,7 @@ defmodule Desqer.SessionController do
   @moduledoc """
   Endpoints for sessions.
   """
+
   use Desqer.Web, :controller
 
   plug :scrub_params, "user" when action in [:create]

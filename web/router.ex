@@ -29,5 +29,7 @@ defmodule Desqer.Router do
     delete "/users", UserController, :delete
 
     delete "/sessions", SessionController, :delete
+
+    post "/professionals", ProfessionalController, :create
   end
 end

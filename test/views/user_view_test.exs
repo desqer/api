@@ -2,7 +2,7 @@ defmodule Desqer.UserViewTest do
   use Desqer.ConnCase, async: true
   import Phoenix.View
 
-  @valid_attrs %{
+  @user_attrs %{
     id: "123",
     name: "John Doe",
     email: "john@doe.com",
@@ -14,15 +14,15 @@ defmodule Desqer.UserViewTest do
   }
 
   test "renders preview.json" do
-    user = struct(Desqer.User, @valid_attrs)
+    user = struct(Desqer.User, @user_attrs)
     data = %{name: user.name, phone: user.phone.full_number}
 
     assert render(Desqer.UserView, "preview.json", user: user) == %{data: data}
   end
 
   test "renders show.json" do
-    user = struct(Desqer.User, @valid_attrs)
-    data = %{@valid_attrs | phone: @valid_attrs.phone.full_number}
+    user = struct(Desqer.User, @user_attrs)
+    data = %{@user_attrs | phone: @user_attrs.phone.full_number}
 
     assert render(Desqer.UserView, "show.json", user: user) == %{data: data}
   end

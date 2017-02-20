@@ -2,6 +2,7 @@ defmodule Desqer.UserController do
   @moduledoc """
   Endpoints for users.
   """
+
   use Desqer.Web, :controller
 
   plug :scrub_params, "user" when action in [:create, :update]
