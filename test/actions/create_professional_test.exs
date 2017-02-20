@@ -11,7 +11,7 @@ defmodule Desqer.Action.CreateProfessionalTest do
 
   test "lowercases email" do
     user = insert(:user)
-    {:error, _, changeset, _} = Desqer.Action.CreateProfessional.run(user, %{email: "JOHN@DOE.COM"}, %{})
+    {:error, _, changeset, _} = Desqer.Action.CreateProfessional.run(user, %{"email" => "JOHN@DOE.COM"}, %{})
 
     assert {:email, "john@doe.com"} in changeset.changes
   end
