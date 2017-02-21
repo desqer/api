@@ -3,6 +3,7 @@ defmodule Desqer.Venue do
 
   schema "venues" do
     has_many :roles, Desqer.Role
+    has_many :services, Desqer.Service
     has_many :phones, Desqer.Phone
     has_many :links, Desqer.Link
 
