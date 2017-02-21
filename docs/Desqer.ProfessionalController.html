@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Desqer.SessionController – desqer v0.0.1</title>
+    <title>Desqer.ProfessionalController – desqer v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-4ae92f3008.js"></script>
@@ -59,14 +59,14 @@
 
       <h1>
         <small class="visible-xs">desqer v0.0.1</small>
-        Desqer.SessionController
+        Desqer.ProfessionalController
         
         
       </h1>
 
       
         <section id="moduledoc">
-          <p>Endpoints for sessions.</p>
+          <p>Endpoints for professionals.</p>
 
         </section>
       
@@ -91,16 +91,7 @@
     <a href="#create/2">create(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Signs in <code class="inline">user</code></p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#delete/2">delete(conn, params)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Signs out <code class="inline">user</code></p>
+    <div class="summary-synopsis"><p>Creates <code class="inline">professional</code></p>
 </div>
   
 </div>
@@ -137,61 +128,67 @@
     
   </div>
   <section class="docstring">
-    <p>Signs in <code class="inline">user</code>.</p>
+    <p>Creates <code class="inline">professional</code>.</p>
 <p>Endpoint example:</p>
-<pre><code class="elixir">POST /sessions</code></pre>
+<pre><code class="elixir">POST /professionals</code></pre>
+<p>Request headers example:</p>
+<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
 <p>Params example:</p>
 <pre><code class="elixir">{
   &quot;user&quot;: {
-    &quot;phone&quot;: &quot;+55 47 99987-4321&quot;,
-    &quot;password&quot;: &quot;foo123&quot;
+    &quot;email&quot;: &quot;john@doe.com&quot;,
+    &quot;bio&quot;: &quot;An awesome professional&quot;
+  },
+  &quot;venue&quot;: {
+    &quot;name&quot;: &quot;John&#39;s Way&quot;,
+    &quot;lat&quot;: &quot;-27.216093&quot;,
+    &quot;lon&quot;: &quot;-49.643502&quot;,
+    &quot;address&quot;: &quot;Sete de setembro, 123 - Rio do Sul - SC&quot;,
+    &quot;phone&quot;: &quot;554735421234&quot;,
+    &quot;website&quot;: &quot;http://johnsway.com&quot;
   }
 }</code></pre>
 <p>Success response <code class="inline">code 200</code> example:</p>
 <pre><code class="elixir">{
-  &quot;jwt&quot;: &quot;eyJhbGciOiJIUzUxMiI5c...&quot;,
-  &quot;exp&quot;: 1489573943,
   &quot;data&quot;: {
-    &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
-    &quot;name&quot;: &quot;John Doe&quot;,
-    &quot;phone&quot;: &quot;55479995874321&quot;,
-    &quot;email&quot;: &quot;john@doe.com&quot;,
-    &quot;bio&quot;: &quot;An awesome professional&quot;
-    &quot;professional&quot;: true,
-    &quot;confirmed&quot;: true,
-    &quot;deleted&quot;: false,
+    &quot;user&quot;: {
+      &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+      &quot;name&quot;: &quot;John Doe&quot;,
+      &quot;phone&quot;: &quot;55479995874321&quot;,
+      &quot;email&quot;: &quot;john@doe.com&quot;,
+      &quot;bio&quot;: &quot;An awesome professional&quot;,
+      &quot;professional&quot;: true,
+      &quot;confirmed&quot;: false,
+      &quot;deleted&quot;: false
+    },
+    &quot;venue&quot;: {
+      &quot;id&quot;: &quot;32fce658-4df6-415f-8355-ded35085ad3e&quot;,
+      &quot;name&quot;: &quot;John&#39;s Way&quot;,
+      &quot;lat&quot;: -27.216093,
+      &quot;lon&quot;: -49.643502,
+      &quot;address&quot;: &quot;Sete de setembro, 123 - Rio do Sul - SC&quot;,
+      &quot;phones&quot;: [{
+        &quot;id&quot;: &quot;bf3adb47-df19-4eb3-90b7-36538518a5e5&quot;,
+        &quot;type&quot;: &quot;main&quot;,
+        &quot;value&quot;: &quot;554735421234&quot;,
+        &quot;deleted&quot;: false
+      }],
+      &quot;links&quot;: [{
+        &quot;id&quot;: &quot;fd3d939e-7b85-4f20-87a3-251942ca3619&quot;,
+        &quot;type&quot;: &quot;website&quot;,
+        &quot;name&quot;: null,
+        &quot;url&quot;: &quot;http://johnsway.com&quot;,
+        &quot;deleted&quot;: false
+      }],
+      &quot;deleted&quot;: false
+    },
   }
 }</code></pre>
 <p>Error response <code class="inline">code 422</code> example:</p>
 <pre><code class="elixir">{
   &quot;errors&quot;: {
-    &quot;phone&quot;: [&quot;can&#39;t be blank&quot;],
-    &quot;password&quot;: [&quot;can&#39;t be blank&quot;]
+    &quot;professional&quot;: [&quot;has already been set up&quot;]
   }
-}</code></pre>
-
-  </section>
-</div>
-<div class="detail" id="delete/2">
-  
-  <div class="detail-header">
-    <a href="#delete/2" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">delete(conn, params)</span>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Signs out <code class="inline">user</code>.</p>
-<p>Endpoint example:</p>
-<pre><code class="elixir">DELETE /sessions</code></pre>
-<p>Request headers example:</p>
-<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
-<p>Success response <code class="inline">code 200</code> example:</p>
-<pre><code class="elixir">{
-  &quot;detail&quot;: &quot;Logged out&quot;
 }</code></pre>
 <p>Error response <code class="inline">code 401</code> example:</p>
 <pre><code class="elixir">{
