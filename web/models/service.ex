@@ -10,6 +10,7 @@ defmodule Desqer.Service do
     field :description, :string
     field :price, :integer
     field :duration, :integer
+    field :in_advance, :integer
     field :status, Desqer.Collection.ServiceStatus
     field :need_approval, :boolean, default: false
     field :online_scheduling, :boolean, default: false
