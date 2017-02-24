@@ -16,6 +16,10 @@ defmodule Desqer.Type.HoursTest do
     assert Desqer.Type.Hours.cast(@hours) == {:ok, @hours}
   end
 
+  test "#cast when hours is empty" do
+    assert Desqer.Type.Hours.cast([]) == {:ok, []}
+  end
+
   test "#cast when hours is not valid" do
     assert Desqer.Type.Hours.cast("123") == :error
     assert Desqer.Type.Hours.cast(nil) == :error
@@ -37,6 +41,10 @@ defmodule Desqer.Type.HoursTest do
     {:ok, hours} = Desqer.Type.Hours.dump(["08:00-12:00", "13:00-18:00"])
 
     assert hours == ["08:00-12:00", "13:00-18:00"]
+  end
+
+  test "#dump when hours is empty" do
+    assert Desqer.Type.Hours.dump([]) == {:ok, []}
   end
 
   test "#dump when hours is not valid" do

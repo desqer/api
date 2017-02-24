@@ -11,6 +11,7 @@ defmodule Desqer.Type.Hours do
     {:ok, hours}
   end
 
+  def cast([] = hours), do: {:ok, hours}
   def cast(_), do: :error
 
   def load(value), do: cast(value)
@@ -23,6 +24,7 @@ defmodule Desqer.Type.Hours do
     {:ok, hours}
   end
 
+  def dump([] = hours), do: {:ok, hours}
   def dump(_), do: :error
 
   defp to_time_range(<<from::bytes-size(5)>> <> "-" <> <<to::bytes-size(5)>>) do
