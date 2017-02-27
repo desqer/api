@@ -5,7 +5,7 @@ defmodule Desqer.Role do
     belongs_to :user, Desqer.User
     belongs_to :venue, Desqer.Venue
 
-    has_many :assignments, Desqer.Assignment
+    has_many :services, Desqer.Service
 
     field :name, :string
     field :owner, :boolean, default: false
