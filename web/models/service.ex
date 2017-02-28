@@ -3,7 +3,6 @@ defmodule Desqer.Service do
 
   schema "services" do
     belongs_to :role, Desqer.Role
-    belongs_to :venue, Desqer.Venue
 
     field :name, :string
     field :description, :string
