@@ -32,4 +32,43 @@ defmodule Desqer.Factory do
       revoked: false
     }
   end
+
+  def venue_factory do
+    %Desqer.Venue{
+      name: "John's Studio",
+      lat: -27.216093,
+      lon: -49.643502,
+      address: "Sete de setembro, 123 - Rio do Sul - SC"
+    }
+  end
+
+  def role_factory do
+    %Desqer.Role{
+      user: build(:user),
+      venue: build(:venue),
+      name: "Hair Stylist",
+      owner: true
+    }
+  end
+
+  def service_factory do
+    %Desqer.Service{
+      role: build(:role),
+      name: "Hair Cut",
+      description: "Scissors and fire, wash included.",
+      price: 4900,
+      duration: 40,
+      in_advance: 2,
+      status: Desqer.Collection.ServiceStatus.active,
+      need_approval: false,
+      online_scheduling: true,
+      sunday: [],
+      monday: [{~T[13:00:00], ~T[20:00:00]}],
+      tuesday: [{~T[13:00:00], ~T[20:00:00]}],
+      wednesday: [{~T[13:00:00], ~T[20:00:00]}],
+      thursday: [{~T[13:00:00], ~T[20:00:00]}],
+      friday: [{~T[13:00:00], ~T[20:00:00]}],
+      saturday: []
+    }
+  end
 end

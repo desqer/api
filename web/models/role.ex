@@ -13,4 +13,18 @@ defmodule Desqer.Role do
 
     timestamps()
   end
+
+  def by_id(query, id) do
+    from q in query,
+    where: q.id == ^id
+  end
+
+  def by_owner(query, user_id) do
+    from q in query,
+    distinct: true,
+    join: v in assoc(q, :venue),
+    join: vr in assoc(v, :roles),
+    where: vr.user_id == ^user_id,
+    where: vr.owner == true
+  end
 end
