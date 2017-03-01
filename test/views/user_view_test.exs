@@ -15,15 +15,15 @@ defmodule Desqer.UserViewTest do
 
   test "renders preview.json" do
     user = struct(Desqer.User, @user_attrs)
-    data = %{name: user.name, phone: user.phone.full_number}
+    user_data = %{name: user.name, phone: user.phone.full_number}
 
-    assert render(Desqer.UserView, "preview.json", user: user) == %{data: data}
+    assert render(Desqer.UserView, "preview.json", user: user) == %{data: %{user: user_data}}
   end
 
   test "renders show.json" do
     user = struct(Desqer.User, @user_attrs)
-    data = %{@user_attrs | phone: @user_attrs.phone.full_number}
+    user_data = %{@user_attrs | phone: @user_attrs.phone.full_number}
 
-    assert render(Desqer.UserView, "show.json", user: user) == %{data: data}
+    assert render(Desqer.UserView, "show.json", user: user) == %{data: %{user: user_data}}
   end
 end

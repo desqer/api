@@ -15,9 +15,9 @@ defmodule Desqer.SessionViewTest do
 
   test "renders show.json" do
     user = struct(Desqer.User, @user_attrs)
-    data = %{@user_attrs | phone: @user_attrs.phone.full_number}
+    user_data = %{@user_attrs | phone: @user_attrs.phone.full_number}
 
     assert render(Desqer.SessionView, "show.json", user: user, jwt: "123", exp: 456) ==
-           %{data: data, jwt: "123", exp: 456}
+           %{data: %{user: user_data}, jwt: "123", exp: 456}
   end
 end

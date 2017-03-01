@@ -18,8 +18,10 @@ defmodule Desqer.UserController do
 
       {
         "data": {
-          "name": "John Doe",
-          "phone": "55479995874321"
+          "user": {
+            "name": "John Doe",
+            "phone": "55479995874321"
+          }
         }
       }
 
@@ -51,14 +53,16 @@ defmodule Desqer.UserController do
 
       {
         "data": {
-          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
-          "name": "John Doe",
-          "phone": "55479995874321",
-          "email": "john@doe.com",
-          "bio": "An awesome professional"
-          "professional": true,
-          "confirmed": true,
-          "deleted": false
+          "user": {
+            "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+            "name": "John Doe",
+            "phone": "55479995874321",
+            "email": "john@doe.com",
+            "bio": "An awesome professional"
+            "professional": true,
+            "confirmed": true,
+            "deleted": false
+          }
         }
       }
 
@@ -96,14 +100,16 @@ defmodule Desqer.UserController do
 
       {
         "data": {
-          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
-          "name": "John Doe",
-          "phone": "55479995874321",
-          "email": null,
-          "bio": null,
-          "professional": false,
-          "confirmed": false,
-          "deleted": false
+          "user": {
+            "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+            "name": "John Doe",
+            "phone": "55479995874321",
+            "email": null,
+            "bio": null,
+            "professional": false,
+            "confirmed": false,
+            "deleted": false
+          }
         }
       }
 
@@ -149,14 +155,16 @@ defmodule Desqer.UserController do
 
       {
         "data": {
-          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
-          "name": "Jane Doe",
-          "phone": "55479995871234",
-          "email": "jane@doe.com",
-          "bio": "An awesome professional",
-          "professional": true,
-          "confirmed": false,
-          "deleted": false
+          "user": {
+            "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+            "name": "Jane Doe",
+            "phone": "55479995871234",
+            "email": "jane@doe.com",
+            "bio": "An awesome professional",
+            "professional": true,
+            "confirmed": false,
+            "deleted": false
+          }
         }
       }
 
@@ -199,14 +207,16 @@ defmodule Desqer.UserController do
 
       {
         "data": {
-          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
-          "name": "Jane Doe",
-          "phone": "55479995871234",
-          "email": "jane@doe.com",
-          "bio": "An awesome professional",
-          "professional": true,
-          "confirmed": false,
-          "deleted": true
+          "user": {
+            "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+            "name": "Jane Doe",
+            "phone": "55479995871234",
+            "email": "jane@doe.com",
+            "bio": "An awesome professional",
+            "professional": true,
+            "confirmed": false,
+            "deleted": true
+          }
         }
       }
 

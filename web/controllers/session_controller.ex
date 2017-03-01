@@ -29,14 +29,16 @@ defmodule Desqer.SessionController do
         "jwt": "eyJhbGciOiJIUzUxMiI5c...",
         "exp": 1489573943,
         "data": {
-          "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
-          "name": "John Doe",
-          "phone": "55479995874321",
-          "email": "john@doe.com",
-          "bio": "An awesome professional"
-          "professional": true,
-          "confirmed": true,
-          "deleted": false,
+          "user": {
+            "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+            "name": "John Doe",
+            "phone": "55479995874321",
+            "email": "john@doe.com",
+            "bio": "An awesome professional"
+            "professional": true,
+            "confirmed": true,
+            "deleted": false,
+          }
         }
       }
 

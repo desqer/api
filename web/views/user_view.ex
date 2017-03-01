@@ -2,11 +2,11 @@ defmodule Desqer.UserView do
   use Desqer.Web, :view
 
   def render("preview.json", %{user: user}) do
-    %{data: %{name: user.name, phone: user.phone.full_number}}
+    %{data: %{user: %{name: user.name, phone: user.phone.full_number}}}
   end
 
   def render("show.json", %{user: user}) do
-    %{data: render_one(user, Desqer.UserView, "user.json")}
+    %{data: %{user: render_one(user, Desqer.UserView, "user.json")}}
   end
 
   def render("user.json", %{user: user}) do

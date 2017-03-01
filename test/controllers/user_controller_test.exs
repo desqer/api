@@ -15,7 +15,7 @@ defmodule Desqer.UserControllerTest do
     conn = get conn, user_path(conn, :preview, "5547999874321")
     data = json_response(conn, 200)["data"]
 
-    assert data["name"] == user.name
+    assert data["user"]["name"] == user.name
   end
 
   test "renders not found when user does not exist", %{conn: conn} do
@@ -28,7 +28,7 @@ defmodule Desqer.UserControllerTest do
     conn = get conn, user_path(conn, :show)
     data = json_response(conn, 200)["data"]
 
-    assert data["id"] == user.id
+    assert data["user"]["id"] == user.id
   end
 
   test "creates and renders user", %{conn: conn} do
@@ -36,7 +36,7 @@ defmodule Desqer.UserControllerTest do
     conn = post conn, user_path(conn, :create), user: user_params
     data = json_response(conn, 200)["data"]
 
-    assert data["phone"] == user_params.phone
+    assert data["user"]["phone"] == user_params.phone
   end
 
   test "renders errors on create when data is invalid", %{conn: conn} do
@@ -50,8 +50,8 @@ defmodule Desqer.UserControllerTest do
     conn = put conn, user_path(conn, :update), user: %{current_password: "1234", phone: "5547999551234"}
     data = json_response(conn, 200)["data"]
 
-    assert data["id"] == user.id
-    assert data["phone"] == "5547999551234"
+    assert data["user"]["id"] == user.id
+    assert data["user"]["phone"] == "5547999551234"
   end
 
   test "renders errors on update when data is invalid", %{signed_conn: conn} do
@@ -65,7 +65,7 @@ defmodule Desqer.UserControllerTest do
     conn = delete conn, user_path(conn, :delete)
     data = json_response(conn, 200)["data"]
 
-    assert data["id"] == user.id
-    assert data["deleted"] == true
+    assert data["user"]["id"] == user.id
+    assert data["user"]["deleted"] == true
   end
 end

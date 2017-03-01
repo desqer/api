@@ -18,7 +18,7 @@ defmodule Desqer.SessionControllerTest do
     data = json_response(conn, 200)["data"]
 
     assert ["Bearer " <> ^jwt] = get_resp_header(conn, "authorization")
-    assert data["phone"] == user_params.phone
+    assert data["user"]["phone"] == user_params.phone
   end
 
   test "renders errors on create when data is invalid", %{conn: conn} do
