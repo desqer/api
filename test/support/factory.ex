@@ -71,4 +71,18 @@ defmodule Desqer.Factory do
       saturday: []
     }
   end
+
+  def appointment_factory do
+    %Desqer.Appointment{
+      user: build(:user, phone: "5547999864321"),
+      service: build(:service),
+      name: "Hair Cute Cut",
+      description: "Fancy style for your hair",
+      price: 3900,
+      starts_at: %Ecto.DateTime{year: 2017, month: 3, day: 12, hour: 13, min: 0, sec: 0},
+      ends_at: %Ecto.DateTime{year: 2017, month: 3, day: 12, hour: 13, min: 30, sec: 0},
+      notes: "Some client specific issues",
+      status: Desqer.Collection.AppointmentStatus.active
+    }
+  end
 end

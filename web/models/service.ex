@@ -24,6 +24,12 @@ defmodule Desqer.Service do
     timestamps()
   end
 
+  def by_role(query, user_id) do
+    from q in query,
+    join: r in assoc(q, :role),
+    where: r.user_id == ^user_id
+  end
+
   def by_venue_owner(query, user_id) do
     from q in query,
     distinct: true,
