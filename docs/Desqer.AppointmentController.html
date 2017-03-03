@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Desqer.ProfessionalController – desqer v0.0.1</title>
+    <title>Desqer.AppointmentController – desqer v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
     <script src="dist/sidebar_items-0e3c5859ba.js"></script>
@@ -59,14 +59,14 @@
 
       <h1>
         <small class="visible-xs">desqer v0.0.1</small>
-        Desqer.ProfessionalController
+        Desqer.AppointmentController
         
         
       </h1>
 
       
         <section id="moduledoc">
-          <p>Endpoints for professionals.</p>
+          <p>Endpoints for appointments.</p>
 
         </section>
       
@@ -91,7 +91,16 @@
     <a href="#create/2">create(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Creates <code class="inline">professional</code></p>
+    <div class="summary-synopsis"><p>Creates <code class="inline">appointment</code></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update/2">update(conn, map)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Updates <code class="inline">appointment</code></p>
 </div>
   
 </div>
@@ -128,66 +137,110 @@
     
   </div>
   <section class="docstring">
-    <p>Creates <code class="inline">professional</code>.</p>
+    <p>Creates <code class="inline">appointment</code>.</p>
 <p>Endpoint example:</p>
-<pre><code class="elixir">POST /professionals</code></pre>
+<pre><code class="elixir">POST /appointments</code></pre>
 <p>Request headers example:</p>
 <pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
 <p>Params example:</p>
 <pre><code class="elixir">{
-  &quot;user&quot;: {
-    &quot;email&quot;: &quot;john@doe.com&quot;,
-    &quot;bio&quot;: &quot;An awesome professional&quot;
-  },
-  &quot;venue&quot;: {
-    &quot;name&quot;: &quot;John&#39;s Way&quot;,
-    &quot;lat&quot;: &quot;-27.216093&quot;,
-    &quot;lon&quot;: &quot;-49.643502&quot;,
-    &quot;address&quot;: &quot;Sete de setembro, 123 - Rio do Sul - SC&quot;,
-    &quot;phone&quot;: &quot;554735421234&quot;,
-    &quot;website&quot;: &quot;http://johnsway.com&quot;
+  &quot;appointment&quot;: {
+    &quot;service_id&quot;: &quot;80e9863b-61bc-45be-9f0e-9aebfb2dcec6&quot;,
+    &quot;starts_at&quot;: &quot;2017-03-10 15:30:00&quot;,
+    &quot;ends_at&quot;: &quot;2017-03-10 16:00:00&quot;,
+    &quot;notes&quot;: &quot;Hair massage needed&quot;
   }
 }</code></pre>
+<p>Params details:</p>
+<ul>
+<li><code class="inline">price</code> in cents
+</li>
+</ul>
 <p>Success response <code class="inline">code 200</code> example:</p>
 <pre><code class="elixir">{
   &quot;data&quot;: {
-    &quot;user&quot;: {
+    &quot;appointment&quot;: {
       &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
-      &quot;name&quot;: &quot;John Doe&quot;,
-      &quot;phone&quot;: &quot;55479995874321&quot;,
-      &quot;email&quot;: &quot;john@doe.com&quot;,
-      &quot;bio&quot;: &quot;An awesome professional&quot;,
-      &quot;professional&quot;: true,
-      &quot;confirmed&quot;: false,
-      &quot;deleted&quot;: false
-    },
-    &quot;venue&quot;: {
-      &quot;id&quot;: &quot;32fce658-4df6-415f-8355-ded35085ad3e&quot;,
-      &quot;name&quot;: &quot;John&#39;s Way&quot;,
-      &quot;lat&quot;: -27.216093,
-      &quot;lon&quot;: -49.643502,
-      &quot;address&quot;: &quot;Sete de setembro, 123 - Rio do Sul - SC&quot;,
-      &quot;phones&quot;: [{
-        &quot;id&quot;: &quot;bf3adb47-df19-4eb3-90b7-36538518a5e5&quot;,
-        &quot;type&quot;: &quot;main&quot;,
-        &quot;value&quot;: &quot;554735421234&quot;,
-        &quot;deleted&quot;: false
-      }],
-      &quot;links&quot;: [{
-        &quot;id&quot;: &quot;fd3d939e-7b85-4f20-87a3-251942ca3619&quot;,
-        &quot;type&quot;: &quot;website&quot;,
-        &quot;name&quot;: null,
-        &quot;url&quot;: &quot;http://johnsway.com&quot;,
-        &quot;deleted&quot;: false
-      }],
-      &quot;deleted&quot;: false
-    },
+      &quot;user_id&quot;: &quot;69f06156-7fc2-4c7f-abde-fc20204627e1&quot;,
+      &quot;service_id&quot;: &quot;9c1c0135-9cb7-41d6-9991-9c8042d31bc8&quot;,
+      &quot;name&quot;: &quot;Haircut&quot;,
+      &quot;description&quot;: &quot;The perfect hair style for your type of face&quot;,
+      &quot;price&quot;: 4900,
+      &quot;starts_at&quot;: &quot;2017-03-10T15:30:00&quot;,
+      &quot;ends_at&quot;: &quot;2017-03-10T16:00:00&quot;,
+      &quot;notes&quot;: &quot;Hair massage needed&quot;,
+      &quot;status&quot;: &quot;active&quot;
+    }
   }
 }</code></pre>
 <p>Error response <code class="inline">code 422</code> example:</p>
 <pre><code class="elixir">{
   &quot;errors&quot;: {
-    &quot;professional&quot;: [&quot;has already been set up&quot;]
+    &quot;starts_at&quot;: [&quot;can&#39;t be blank&quot;],
+    &quot;ends_at&quot;: [&quot;can&#39;t be blank&quot;]
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 401</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;detail&quot;: &quot;Resource not authorized&quot;
+  }
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="update/2">
+  
+  <div class="detail-header">
+    <a href="#update/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">update(conn, map)</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Updates <code class="inline">appointment</code>.</p>
+<p>Endpoint example:</p>
+<pre><code class="elixir">PUT /appointments/2050ea22-a273-4bef-93e9-ce9df0e73ddc</code></pre>
+<p>Request headers example:</p>
+<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
+<p>Params example:</p>
+<pre><code class="elixir">{
+  &quot;appointment&quot;: {
+    &quot;starts_at&quot;: &quot;2017-03-09 13:00&quot;,
+    &quot;ends_at&quot;: &quot;2017-03-09 13:30&quot;,
+    &quot;notes&quot;: &quot;Hair massage bonus and others&quot;,
+    &quot;status&quot;: &quot;canceled&quot;
+  }
+}</code></pre>
+<p>Params details:</p>
+<ul>
+<li><code class="inline">status</code> in [active, canceled]
+</li>
+</ul>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: {
+    &quot;appointment&quot;: {
+      &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+      &quot;user_id&quot;: &quot;69f06156-7fc2-4c7f-abde-fc20204627e1&quot;,
+      &quot;service_id&quot;: &quot;9c1c0135-9cb7-41d6-9991-9c8042d31bc8&quot;,
+      &quot;name&quot;: &quot;Haircut&quot;,
+      &quot;description&quot;: &quot;The perfect hair style for your type of face&quot;,
+      &quot;price&quot;: 4900,
+      &quot;starts_at&quot;: &quot;2017-03-09 13:00&quot;,
+      &quot;ends_at&quot;: &quot;2017-03-09 13:30&quot;,
+      &quot;notes&quot;: &quot;Hair massage bonus and others&quot;,
+      &quot;status&quot;: &quot;canceled&quot;
+    }
+  }
+}</code></pre>
+<p>Error response <code class="inline">code 422</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;status&quot;: [&quot;is invalid&quot;]
   }
 }</code></pre>
 <p>Error response <code class="inline">code 401</code> example:</p>
