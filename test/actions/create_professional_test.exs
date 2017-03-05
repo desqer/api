@@ -32,7 +32,7 @@ defmodule Desqer.Action.CreateProfessionalTest do
       "website" => "http://johnsway.com"
     }
 
-    {:ok, %{user: user, venue: venue, role: role}} = Desqer.Action.CreateProfessional.run(user, user_params, venue_params)
+    {:ok, %{user: user, venue: venue, professional: professional}} = Desqer.Action.CreateProfessional.run(user, user_params, venue_params)
 
     [%{value: %{full_number: phone}, type: "main"}] = venue.phones
     [%{url: website, type: :website}] = venue.links
@@ -46,6 +46,6 @@ defmodule Desqer.Action.CreateProfessionalTest do
     assert user.email == user_params["email"]
     assert user.bio == user_params["bio"]
     assert user.professional
-    assert role.owner
+    assert professional.owner
   end
 end

@@ -11,7 +11,7 @@ defmodule Desqer.ServiceView do
 
   def render("service.json", %{service: service}) do
     %{id: service.id,
-      role_id: service.role_id,
+      professional_id: service.professional_id,
       name: service.name,
       description: service.description,
       price: service.price,

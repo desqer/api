@@ -6,7 +6,7 @@ defmodule Desqer.ServiceController do
   use Desqer.Web, :controller
 
   plug :scrub_params, "service" when action in [:create, :update]
-  plug :scrub_params, "role_ids" when action in [:create]
+  plug :scrub_params, "professional_ids" when action in [:create]
 
   @doc """
   Creates `service`.
@@ -39,7 +39,7 @@ defmodule Desqer.ServiceController do
           "friday": ["08:00-12:00"],
           "saturday": []
         },
-        "role_ids": [
+        "professional_ids": [
           "9c1c0135-9cb7-41d6-9991-9c8042d31bc8"
         ]
       }
@@ -58,7 +58,7 @@ defmodule Desqer.ServiceController do
           "services": [
             {
               "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
-              "role_id": "9c1c0135-9cb7-41d6-9991-9c8042d31bc8",
+              "professional_id": "9c1c0135-9cb7-41d6-9991-9c8042d31bc8",
               "name": "Haircut",
               "description": "The perfect hair style for your type of face.",
               "price": 4900,
@@ -99,8 +99,8 @@ defmodule Desqer.ServiceController do
         }
       }
   """
-  def create(conn, %{"role_ids" => role_ids, "service" => service_params}) do
-    case Desqer.Action.CreateService.run(current_user(conn), role_ids, service_params) do
+  def create(conn, %{"professional_ids" => professional_ids, "service" => service_params}) do
+    case Desqer.Action.CreateService.run(current_user(conn), professional_ids, service_params) do
       {:ok, services} -> render(conn, "show.json", services: Map.values(services))
       {:error, _operation, changeset, _changes} -> render_error(conn, changeset)
     end
@@ -152,7 +152,7 @@ defmodule Desqer.ServiceController do
         "data": {
           "service": {
             "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
-            "role_id": "9c1c0135-9cb7-41d6-9991-9c8042d31bc8",
+            "professional_id": "9c1c0135-9cb7-41d6-9991-9c8042d31bc8",
             "name": "Haircut Reloaded",
             "description": "The hair style made for you.",
             "price": 4500,
@@ -216,7 +216,7 @@ defmodule Desqer.ServiceController do
         "data": {
           "service": {
             "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
-            "role_id": "9c1c0135-9cb7-41d6-9991-9c8042d31bc8",
+            "professional_id": "9c1c0135-9cb7-41d6-9991-9c8042d31bc8",
             "name": "Haircut Reloaded",
             "description": "The hair style made for you.",
             "price": 4500,

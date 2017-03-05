@@ -42,8 +42,8 @@ defmodule Desqer.Factory do
     }
   end
 
-  def role_factory do
-    %Desqer.Role{
+  def professional_factory do
+    %Desqer.Professional{
       user: build(:user),
       venue: build(:venue),
       name: "Hair Stylist",
@@ -53,7 +53,7 @@ defmodule Desqer.Factory do
 
   def service_factory do
     %Desqer.Service{
-      role: build(:role),
+      professional: build(:professional),
       name: "Hair Cut",
       description: "Scissors and fire, wash included.",
       price: 4900,

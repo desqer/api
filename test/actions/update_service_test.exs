@@ -2,17 +2,17 @@ defmodule Desqer.Action.UpdateServiceTest do
   use Desqer.ModelCase, async: true
 
   test "raises error when service is not found on user owned venues" do
-    role = insert(:role, owner: false)
-    service = insert(:service, role: role)
+    professional = insert(:professional, owner: false)
+    service = insert(:service, professional: professional)
 
     assert_raise Ecto.NoResultsError, fn ->
-      Desqer.Action.UpdateService.run(service.role.user, service.id, %{})
+      Desqer.Action.UpdateService.run(service.professional.user, service.id, %{})
     end
   end
 
   test "returns error when required params are absent" do
     service = insert(:service, name: nil, description: nil, duration: nil, status: nil)
-    {:error, changeset} = Desqer.Action.UpdateService.run(service.role.user, service.id, %{})
+    {:error, changeset} = Desqer.Action.UpdateService.run(service.professional.user, service.id, %{})
 
     assert {:name, {"can't be blank", [validation: :required]}} in changeset.errors
     assert {:description, {"can't be blank", [validation: :required]}} in changeset.errors
@@ -40,7 +40,7 @@ defmodule Desqer.Action.UpdateServiceTest do
       "friday" => [{~T[08:00:00], ~T[12:00:00]}]
     }
 
-    {:ok, service} = Desqer.Action.UpdateService.run(service.role.user, service.id, params)
+    {:ok, service} = Desqer.Action.UpdateService.run(service.professional.user, service.id, params)
 
     assert service.name == params["name"]
     assert service.description == params["description"]

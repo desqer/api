@@ -92,7 +92,7 @@ defmodule Desqer.ProfessionalController do
   """
   def create(conn, %{"user" => user_params, "venue" => venue_params}) do
     case Desqer.Action.CreateProfessional.run(current_user(conn), user_params, venue_params) do
-      {:ok, %{user: user, venue: venue, role: _role}} ->
+      {:ok, %{user: user, venue: venue, professional: _professional}} ->
         render(conn, "show.json", user: user, venue: venue)
       {:error, _operation, changeset, _changes} ->
         conn

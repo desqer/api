@@ -4,7 +4,7 @@ defmodule Desqer.ServiceViewTest do
 
   @service_attrs %{
     id: "123",
-    role_id: "456",
+    professional_id: "456",
     name: "Hair Cut",
     description: "A better version of you.",
     price: 4200,

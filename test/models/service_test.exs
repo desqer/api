@@ -1,13 +1,13 @@
 defmodule Desqer.ServiceTest do
   use Desqer.ModelCase, async: true
 
-  test "#by_role" do
-    role = insert(:role, user: build(:user, phone: "554799871234"))
-    other_role = insert(:role, venue: role.venue)
-    service = insert(:service, role: role)
-    insert(:service, role: other_role)
+  test "#by_professional" do
+    professional = insert(:professional, user: build(:user, phone: "554799871234"))
+    other_professional = insert(:professional, venue: professional.venue)
+    service = insert(:service, professional: professional)
+    insert(:service, professional: other_professional)
 
-    result = Desqer.Service.by_role(Desqer.Service, service.role.user_id) |> Desqer.Repo.all
+    result = Desqer.Service.by_professional(Desqer.Service, service.professional.user_id) |> Desqer.Repo.all
     result_ids = Enum.map(result, fn (r) -> r.id end)
 
     assert length(result) == 1
@@ -15,14 +15,14 @@ defmodule Desqer.ServiceTest do
   end
 
   test "#by_venue_owner" do
-    role = insert(:role)
-    other_role = insert(:role, user: role.user, venue: role.venue, owner: false)
-    invalid_role = insert(:role, user: role.user, owner: false)
-    service = insert(:service, role: role)
-    other_service = insert(:service, role: other_role)
-    insert(:service, role: invalid_role)
+    professional = insert(:professional)
+    other_professional = insert(:professional, user: professional.user, venue: professional.venue, owner: false)
+    invalid_professional = insert(:professional, user: professional.user, owner: false)
+    service = insert(:service, professional: professional)
+    other_service = insert(:service, professional: other_professional)
+    insert(:service, professional: invalid_professional)
 
-    result = Desqer.Service.by_venue_owner(Desqer.Service, service.role.user_id) |> Desqer.Repo.all
+    result = Desqer.Service.by_venue_owner(Desqer.Service, service.professional.user_id) |> Desqer.Repo.all
     result_ids = Enum.map(result, fn (r) -> r.id end)
 
     assert length(result) == 2

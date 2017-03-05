@@ -12,8 +12,8 @@ defmodule Desqer.AppointmentControllerTest do
   end
 
   test "creates and renders appointments", %{signed_conn: conn, user: user} do
-    role = insert(:role, user: user)
-    service = insert(:service, role: role)
+    professional = insert(:professional, user: user)
+    service = insert(:service, professional: professional)
     other_user = insert(:user, phone: "5547999871234")
 
     params = %{service_id: service.id, starts_at: "2017-03-10T14:30:00", ends_at: "2017-03-10T15:20:00"}
@@ -25,8 +25,8 @@ defmodule Desqer.AppointmentControllerTest do
 
   test "creates and renders appointment", %{signed_conn: conn} do
     other_user = insert(:user, phone: "5547999871234")
-    role = insert(:role, user: other_user)
-    service = insert(:service, role: role)
+    professional = insert(:professional, user: other_user)
+    service = insert(:service, professional: professional)
 
     params = %{service_id: service.id, starts_at: "2017-03-10T14:30:00", ends_at: "2017-03-10T15:20:00"}
     conn = post conn, appointment_path(conn, :create), appointment: params
@@ -36,8 +36,8 @@ defmodule Desqer.AppointmentControllerTest do
   end
 
   test "renders errors on create appointments when data is invalid", %{signed_conn: conn, user: user} do
-    role = insert(:role, user: user)
-    service = insert(:service, role: role)
+    professional = insert(:professional, user: user)
+    service = insert(:service, professional: professional)
     other_user = insert(:user, phone: "5547999871234")
 
     conn = post conn, appointment_path(conn, :create), user_ids: [other_user.id], appointment: %{service_id: service.id}
@@ -48,8 +48,8 @@ defmodule Desqer.AppointmentControllerTest do
 
   test "renders errors on create appointment when data is invalid", %{signed_conn: conn} do
     other_user = insert(:user, phone: "5547999871234")
-    role = insert(:role, user: other_user)
-    service = insert(:service, role: role)
+    professional = insert(:professional, user: other_user)
+    service = insert(:service, professional: professional)
 
     conn = post conn, appointment_path(conn, :create), appointment: %{service_id: service.id}
     errors = json_response(conn, 422)["errors"]
@@ -59,8 +59,8 @@ defmodule Desqer.AppointmentControllerTest do
 
   test "updates and renders appointment", %{signed_conn: conn, user: user} do
     other_user = insert(:user, phone: "5547999871234")
-    role = insert(:role, user: other_user)
-    service = insert(:service, role: role)
+    professional = insert(:professional, user: other_user)
+    service = insert(:service, professional: professional)
     appointment = insert(:appointment, user: user, service: service)
 
     params = %{starts_at: "2017-03-10T17:00:00", ends_at: "2017-03-10T18:20:00"}
@@ -72,8 +72,8 @@ defmodule Desqer.AppointmentControllerTest do
 
   test "renders errors on update when data is invalid", %{signed_conn: conn, user: user} do
     other_user = insert(:user, phone: "5547999871234")
-    role = insert(:role, user: other_user)
-    service = insert(:service, role: role)
+    professional = insert(:professional, user: other_user)
+    service = insert(:service, professional: professional)
     appointment = insert(:appointment, user: user, service: service)
 
     conn = put conn, appointment_path(conn, :update, appointment), appointment: %{status: "foo"}

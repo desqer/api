@@ -5,7 +5,7 @@ defmodule Desqer.Action.CreateProfessional do
     Ecto.Multi.new
     |> Ecto.Multi.update(:user, user_changeset(user, user_params))
     |> Ecto.Multi.insert(:venue, venue_changeset(venue_params))
-    |> Ecto.Multi.run(:role, &insert_role/1)
+    |> Ecto.Multi.run(:professional, &insert_professional/1)
     |> Desqer.Repo.transaction
   end
 
@@ -34,8 +34,8 @@ defmodule Desqer.Action.CreateProfessional do
     cast(link, params, [:type, :name, :url])
   end
 
-  defp insert_role(%{user: user, venue: venue}) do
-    %Desqer.Role{}
+  defp insert_professional(%{user: user, venue: venue}) do
+    %Desqer.Professional{}
     |> change
     |> put_change(:owner, true)
     |> put_assoc(:user, user)

@@ -78,7 +78,7 @@ defmodule Desqer.AppointmentController do
       }
   """
   def create(conn, %{"user_ids" => user_ids, "appointment" => appointment_params}) do
-    case Desqer.Action.CreateAppointmentByRole.run(current_user(conn), user_ids, appointment_params) do
+    case Desqer.Action.CreateAppointmentByProfessional.run(current_user(conn), user_ids, appointment_params) do
       {:ok, appointments} -> render(conn, "show.json", appointments: Map.values(appointments))
       {:error, _operation, changeset, _changes} -> render_error(conn, changeset)
     end

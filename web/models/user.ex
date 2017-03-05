@@ -3,7 +3,7 @@ defmodule Desqer.User do
 
   schema "users" do
     has_many :sessions, Desqer.Session
-    has_many :roles, Desqer.Role
+    has_many :professionals, Desqer.Professional
 
     field :phone, Desqer.Type.Phone
     field :password_hash, :string

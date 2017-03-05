@@ -1,7 +1,7 @@
-defmodule Desqer.Role do
+defmodule Desqer.Professional do
   use Desqer.Web, :model
 
-  schema "roles" do
+  schema "professionals" do
     belongs_to :user, Desqer.User
     belongs_to :venue, Desqer.Venue
 
@@ -23,8 +23,8 @@ defmodule Desqer.Role do
     from q in query,
     distinct: true,
     join: v in assoc(q, :venue),
-    join: vr in assoc(v, :roles),
-    where: vr.user_id == ^user_id,
-    where: vr.owner == true
+    join: vp in assoc(v, :professionals),
+    where: vp.user_id == ^user_id,
+    where: vp.owner == true
   end
 end

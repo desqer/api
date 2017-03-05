@@ -1,4 +1,4 @@
-defmodule Desqer.Action.CreateAppointmentByRole do
+defmodule Desqer.Action.CreateAppointmentByProfessional do
   import Ecto.Changeset
 
   def run(user, user_ids, %{"service_id" => service_id} = params) do
@@ -52,7 +52,7 @@ defmodule Desqer.Action.CreateAppointmentByRole do
 
   defp get_service!(user, service_id) do
     Desqer.Service
-    |> Desqer.Service.by_role(user.id)
+    |> Desqer.Service.by_professional(user.id)
     |> Desqer.Repo.get!(service_id)
   end
 end

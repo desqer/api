@@ -1,4 +1,4 @@
-defmodule Desqer.Action.CreateAppointmentByRoleTest do
+defmodule Desqer.Action.CreateAppointmentByProfessionalTest do
   use Desqer.ModelCase, async: true
 
   test "raises error when service is not found" do
@@ -6,14 +6,14 @@ defmodule Desqer.Action.CreateAppointmentByRoleTest do
     service = insert(:service)
 
     assert_raise Ecto.NoResultsError, fn ->
-      Desqer.Action.CreateAppointmentByRole.run(user, [], %{"service_id" => service.id})
+      Desqer.Action.CreateAppointmentByProfessional.run(user, [], %{"service_id" => service.id})
     end
   end
 
   test "returns empty without user_ids" do
     service = insert(:service)
 
-    {:ok, appointments} = Desqer.Action.CreateAppointmentByRole.run(service.role.user, [], %{"service_id" => service.id})
+    {:ok, appointments} = Desqer.Action.CreateAppointmentByProfessional.run(service.professional.user, [], %{"service_id" => service.id})
 
     assert appointments == %{}
   end
@@ -22,7 +22,7 @@ defmodule Desqer.Action.CreateAppointmentByRoleTest do
     user = insert(:user, phone: "554799871234")
     service = insert(:service)
 
-    {:error, _, changeset, _} = Desqer.Action.CreateAppointmentByRole.run(service.role.user, [user.id], %{"service_id" => service.id})
+    {:error, _, changeset, _} = Desqer.Action.CreateAppointmentByProfessional.run(service.professional.user, [user.id], %{"service_id" => service.id})
 
     assert {:name, service.name} in changeset.changes
     assert {:description, service.description} in changeset.changes
@@ -33,7 +33,7 @@ defmodule Desqer.Action.CreateAppointmentByRoleTest do
     user = insert(:user, phone: "554799871234")
     service = insert(:service, need_approval: true)
 
-    {:error, _, changeset, _} = Desqer.Action.CreateAppointmentByRole.run(service.role.user, [user.id], %{"service_id" => service.id})
+    {:error, _, changeset, _} = Desqer.Action.CreateAppointmentByProfessional.run(service.professional.user, [user.id], %{"service_id" => service.id})
 
     assert {:status, Desqer.Collection.AppointmentStatus.pending} in changeset.changes
   end
@@ -42,7 +42,7 @@ defmodule Desqer.Action.CreateAppointmentByRoleTest do
     user = insert(:user, phone: "554799871234")
     service = insert(:service, name: nil, description: nil)
 
-    {:error, _, changeset, _} = Desqer.Action.CreateAppointmentByRole.run(service.role.user, [user.id], %{"service_id" => service.id})
+    {:error, _, changeset, _} = Desqer.Action.CreateAppointmentByProfessional.run(service.professional.user, [user.id], %{"service_id" => service.id})
 
     assert {:name, {"can't be blank", [validation: :required]}} in changeset.errors
     assert {:description, {"can't be blank", [validation: :required]}} in changeset.errors
@@ -65,7 +65,7 @@ defmodule Desqer.Action.CreateAppointmentByRoleTest do
       "notes" => "Hair wash bonus"
     }
 
-    {:ok, %{appointment_0: appointment}} = Desqer.Action.CreateAppointmentByRole.run(service.role.user, [user.id], params)
+    {:ok, %{appointment_0: appointment}} = Desqer.Action.CreateAppointmentByProfessional.run(service.professional.user, [user.id], params)
 
     assert appointment.user_id == user.id
     assert appointment.service_id == service.id

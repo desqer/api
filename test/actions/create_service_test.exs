@@ -1,17 +1,17 @@
 defmodule Desqer.Action.CreateServiceTest do
   use Desqer.ModelCase, async: true
 
-  test "returns empty without role_ids" do
-    role = insert(:role)
+  test "returns empty without professional_ids" do
+    professional = insert(:professional)
 
-    {:ok, services} = Desqer.Action.CreateService.run(role.user, [], %{})
+    {:ok, services} = Desqer.Action.CreateService.run(professional.user, [], %{})
 
     assert services == %{}
   end
 
   test "returns error when required params are absent" do
-    role = insert(:role)
-    {:error, _, changeset, _} = Desqer.Action.CreateService.run(role.user, [role.id], %{})
+    professional = insert(:professional)
+    {:error, _, changeset, _} = Desqer.Action.CreateService.run(professional.user, [professional.id], %{})
 
     assert {:name, {"can't be blank", [validation: :required]}} in changeset.errors
     assert {:description, {"can't be blank", [validation: :required]}} in changeset.errors
@@ -20,18 +20,18 @@ defmodule Desqer.Action.CreateServiceTest do
     refute changeset.valid?
   end
 
-  test "returns error when role does not belong to user owned venues" do
-    role = insert(:role, owner: false)
+  test "returns error when professional does not belong to user owned venues" do
+    professional = insert(:professional, owner: false)
     params = %{"name" => "Haircut", "description" => "Best haircut in the world", "duration" => 30, "status" => "active"}
 
-    {:error, _, changeset, _} = Desqer.Action.CreateService.run(role.user, [role.id], params)
+    {:error, _, changeset, _} = Desqer.Action.CreateService.run(professional.user, [professional.id], params)
 
-    assert {:role_id,  {"not authorized", []}} in changeset.errors
+    assert {:professional_id,  {"not authorized", []}} in changeset.errors
     refute changeset.valid?
   end
 
-  test "creates service for roles" do
-    role = insert(:role)
+  test "creates service for professionals" do
+    professional = insert(:professional)
 
     params = %{
       "name" => "Haircut Reloaded",
@@ -49,9 +49,9 @@ defmodule Desqer.Action.CreateServiceTest do
       "friday" => [{~T[08:00:00], ~T[12:00:00]}]
     }
 
-    {:ok, %{service_0: service}} = Desqer.Action.CreateService.run(role.user, [role.id], params)
+    {:ok, %{service_0: service}} = Desqer.Action.CreateService.run(professional.user, [professional.id], params)
 
-    assert service.role_id == role.id
+    assert service.professional_id == professional.id
     assert service.name == params["name"]
     assert service.description == params["description"]
     assert service.price == params["price"]

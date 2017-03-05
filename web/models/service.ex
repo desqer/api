@@ -2,7 +2,7 @@ defmodule Desqer.Service do
   use Desqer.Web, :model
 
   schema "services" do
-    belongs_to :role, Desqer.Role
+    belongs_to :professional, Desqer.Professional
 
     field :name, :string
     field :description, :string
@@ -24,18 +24,18 @@ defmodule Desqer.Service do
     timestamps()
   end
 
-  def by_role(query, user_id) do
+  def by_professional(query, user_id) do
     from q in query,
-    join: r in assoc(q, :role),
-    where: r.user_id == ^user_id
+    join: p in assoc(q, :professional),
+    where: p.user_id == ^user_id
   end
 
   def by_venue_owner(query, user_id) do
     from q in query,
     distinct: true,
-    join: r in assoc(q, :role),
-    join: v in assoc(r, :venue),
-    join: vr in assoc(v, :roles),
+    join: p in assoc(q, :professional),
+    join: v in assoc(p, :venue),
+    join: vr in assoc(v, :professionals),
     where: vr.user_id == ^user_id,
     where: vr.owner == true
   end
