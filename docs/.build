@@ -4,13 +4,13 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-0e3c5859ba.js
+dist/sidebar_items-00eb3e2e17.js
 api-reference.html
 index.html
 404.html
 Desqer.html
 Desqer.Action.CreateAppointment.html
-Desqer.Action.CreateAppointmentByRole.html
+Desqer.Action.CreateAppointmentByProfessional.html
 Desqer.Action.CreateProfessional.html
 Desqer.Action.CreateService.html
 Desqer.Action.CreateSession.html
@@ -40,10 +40,10 @@ Desqer.LinkView.html
 Desqer.Password.html
 Desqer.Phone.html
 Desqer.PhoneView.html
+Desqer.Professional.html
 Desqer.ProfessionalController.html
 Desqer.ProfessionalView.html
 Desqer.Repo.html
-Desqer.Role.html
 Desqer.Router.html
 Desqer.Router.Helpers.html
 Desqer.Service.html
