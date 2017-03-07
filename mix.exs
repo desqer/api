@@ -39,6 +39,8 @@ defmodule Desqer.Mixfile do
      {:comeonin, "~> 3.0"},
      {:guardian, "~> 0.14"},
      {:phone, "~> 0.3"},
+     {:edeliver, "~> 1.4"},
+     {:distillery, "~> 1.2"},
      {:ex_doc, "~> 0.14", only: :dev},
      {:ex_machina, "~> 1.0", only: :test}]
   end
