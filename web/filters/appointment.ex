@@ -7,7 +7,7 @@ defmodule Desqer.Filter.Appointment do
     |> Desqer.Repo.all
   end
 
-  defp by_attendee(query, user_id) do
+  def by_attendee(query, user_id) do
     from q in query,
     join: s in assoc(q, :service),
     join: p in assoc(s, :professional),

@@ -53,7 +53,7 @@ defmodule Desqer.Action.CreateAppointmentByProfessional do
 
   defp get_service!(user, service_id) do
     Desqer.Service
-    |> Desqer.Service.by_professional(user.id)
+    |> Desqer.Filter.Service.by_professional(user.id)
     |> Desqer.Repo.get!(service_id)
   end
 end

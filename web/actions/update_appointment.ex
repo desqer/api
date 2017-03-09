@@ -16,7 +16,7 @@ defmodule Desqer.Action.UpdateAppointment do
 
   defp get_appointment!(user, appointment_id) do
     Desqer.Appointment
-    |> Desqer.Appointment.by_attendee(user.id)
+    |> Desqer.Filter.Appointment.by_attendee(user.id)
     |> Desqer.Repo.get!(appointment_id)
   end
 end

@@ -40,8 +40,8 @@ defmodule Desqer.Action.CreateService do
 
   defp professional_owner?(professional_id, user_id) do
     Desqer.Professional
-    |> Desqer.Professional.by_id(professional_id)
-    |> Desqer.Professional.by_owner(user_id)
+    |> Desqer.Filter.Professional.by_id(professional_id)
+    |> Desqer.Filter.Professional.by_owner(user_id)
     |> Desqer.Repo.exists?
   end
 end

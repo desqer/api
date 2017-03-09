@@ -1,4 +1,4 @@
-defmodule Desqer.ServiceTest do
+defmodule Desqer.Filter.ServiceTest do
   use Desqer.ModelCase, async: true
 
   test "#by_professional" do
@@ -7,7 +7,7 @@ defmodule Desqer.ServiceTest do
     service = insert(:service, professional: professional)
     insert(:service, professional: other_professional)
 
-    result = Desqer.Service.by_professional(Desqer.Service, service.professional.user_id) |> Desqer.Repo.all
+    result = Desqer.Filter.Service.by_professional(Desqer.Service, service.professional.user_id) |> Desqer.Repo.all
     result_ids = Enum.map(result, fn (r) -> r.id end)
 
     assert length(result) == 1
@@ -22,7 +22,7 @@ defmodule Desqer.ServiceTest do
     other_service = insert(:service, professional: other_professional)
     insert(:service, professional: invalid_professional)
 
-    result = Desqer.Service.by_venue_owner(Desqer.Service, service.professional.user_id) |> Desqer.Repo.all
+    result = Desqer.Filter.Service.by_venue_owner(Desqer.Service, service.professional.user_id) |> Desqer.Repo.all
     result_ids = Enum.map(result, fn (r) -> r.id end)
 
     assert length(result) == 2
