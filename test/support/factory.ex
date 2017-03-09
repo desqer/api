@@ -46,7 +46,7 @@ defmodule Desqer.Factory do
     %Desqer.Professional{
       user: build(:user),
       venue: build(:venue),
-      name: "Hair Stylist",
+      role: "Hair Stylist",
       owner: true
     }
   end
