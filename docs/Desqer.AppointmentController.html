@@ -8,7 +8,7 @@
     <title>Desqer.AppointmentController – desqer v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-00eb3e2e17.js"></script>
+    <script src="dist/sidebar_items-f940f42632.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -92,6 +92,15 @@
   </div>
   
     <div class="summary-synopsis"><p>Creates <code class="inline">appointment</code> or <code class="inline">appointments</code></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#index/2">index(conn, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>List <code class="inline">appointments</code></p>
 </div>
   
 </div>
@@ -213,6 +222,49 @@
     &quot;starts_at&quot;: [&quot;can&#39;t be blank&quot;],
     &quot;ends_at&quot;: [&quot;can&#39;t be blank&quot;]
   }
+}</code></pre>
+<p>Error response <code class="inline">code 401</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;detail&quot;: &quot;Resource not authorized&quot;
+  }
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="index/2">
+  
+  <div class="detail-header">
+    <a href="#index/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">index(conn, params)</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>List <code class="inline">appointments</code>.</p>
+<p>Endpoint example:</p>
+<pre><code class="elixir">GET /appointments</code></pre>
+<p>Request headers example:</p>
+<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+      &quot;user_id&quot;: &quot;69f06156-7fc2-4c7f-abde-fc20204627e1&quot;,
+      &quot;service_id&quot;: &quot;9c1c0135-9cb7-41d6-9991-9c8042d31bc8&quot;,
+      &quot;name&quot;: &quot;Haircut&quot;,
+      &quot;description&quot;: &quot;The perfect hair style for your type of face&quot;,
+      &quot;price&quot;: 4900,
+      &quot;starts_at&quot;: &quot;2017-03-10T15:30:00&quot;,
+      &quot;ends_at&quot;: &quot;2017-03-10T16:00:00&quot;,
+      &quot;notes&quot;: &quot;Hair massage bonus&quot;,
+      &quot;status&quot;: &quot;active&quot;
+    }
+  ]
 }</code></pre>
 <p>Error response <code class="inline">code 401</code> example:</p>
 <pre><code class="elixir">{

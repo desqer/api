@@ -8,7 +8,7 @@
     <title>Desqer.ServiceController – desqer v0.0.1</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-00eb3e2e17.js"></script>
+    <script src="dist/sidebar_items-f940f42632.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -101,6 +101,15 @@
   </div>
   
     <div class="summary-synopsis"><p>Deletes <code class="inline">service</code></p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#index/2">index(conn, params)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>List <code class="inline">services</code></p>
 </div>
   
 </div>
@@ -271,6 +280,57 @@
       &quot;deleted&quot;: true
     }
   }
+}</code></pre>
+<p>Error response <code class="inline">code 401</code> example:</p>
+<pre><code class="elixir">{
+  &quot;errors&quot;: {
+    &quot;detail&quot;: &quot;Resource not authorized&quot;
+  }
+}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="index/2">
+  
+  <div class="detail-header">
+    <a href="#index/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">index(conn, params)</span>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>List <code class="inline">services</code>.</p>
+<p>Endpoint example:</p>
+<pre><code class="elixir">GET /services</code></pre>
+<p>Request headers example:</p>
+<pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
+<p>Success response <code class="inline">code 200</code> example:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+      &quot;professional_id&quot;: &quot;9c1c0135-9cb7-41d6-9991-9c8042d31bc8&quot;,
+      &quot;name&quot;: &quot;Haircut&quot;,
+      &quot;description&quot;: &quot;The perfect hair style for your type of face.&quot;,
+      &quot;price&quot;: 4900,
+      &quot;duration&quot;: 40,
+      &quot;in_advance&quot;: 1,
+      &quot;status&quot;: &quot;active&quot;,
+      &quot;need_approval&quot;: false,
+      &quot;online_scheduling&quot;: true,
+      &quot;sunday&quot;: [],
+      &quot;monday&quot;: [&quot;13:00-18:00&quot;],
+      &quot;tuesday&quot;: [&quot;08:00-12:00&quot;, &quot;13:00-18:00&quot;],
+      &quot;wednesday&quot;: [&quot;08:00-12:00&quot;, &quot;13:00-18:00&quot;],
+      &quot;thursday&quot;: [&quot;08:00-12:00&quot;, &quot;13:00-18:00&quot;],
+      &quot;friday&quot;: [&quot;08:00-12:00&quot;],
+      &quot;saturday&quot;: [],
+      &quot;deleted&quot;: false
+    }
+  ]
 }</code></pre>
 <p>Error response <code class="inline">code 401</code> example:</p>
 <pre><code class="elixir">{
