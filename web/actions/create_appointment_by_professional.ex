@@ -31,6 +31,7 @@ defmodule Desqer.Action.CreateAppointmentByProfessional do
     %Desqer.Appointment{}
     |> cast(params, permitted_params)
     |> validate_required(required_params)
+    |> foreign_key_constraint(:user_id)
   end
 
   defp fetch_service(service, params) do

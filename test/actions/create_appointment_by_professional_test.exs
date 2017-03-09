@@ -51,6 +51,21 @@ defmodule Desqer.Action.CreateAppointmentByProfessionalTest do
     refute changeset.valid?
   end
 
+  test "returns error when relations does not exist" do
+    service = insert(:service)
+    invalid_user_id = "11111111-1111-1111-1111-111111111111"
+    params = %{
+      "service_id" => service.id,
+      "starts_at" => "2017-03-01 09:00:00",
+      "ends_at" => "2017-03-01 09:30:00"
+    }
+
+    {:error, _, changeset, _} = Desqer.Action.CreateAppointmentByProfessional.run(service.professional.user, [invalid_user_id], params)
+
+    assert {:user_id, {"does not exist", []}} in changeset.errors
+    refute changeset.valid?
+  end
+
   test "creates appointments" do
     user = insert(:user, phone: "554799871234")
     service = insert(:service)
