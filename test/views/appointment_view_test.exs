@@ -15,6 +15,12 @@ defmodule Desqer.AppointmentViewTest do
     status: "active"
   }
 
+  test "renders index.json" do
+    appointment = struct(Desqer.Appointment, @appointment_attrs)
+
+    assert render(Desqer.AppointmentView, "index.json", appointments: [appointment]) == %{data: [@appointment_attrs]}
+  end
+
   test "renders show.json" do
     appointment = struct(Desqer.Appointment, @appointment_attrs)
 

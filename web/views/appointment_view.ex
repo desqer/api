@@ -1,6 +1,10 @@
 defmodule Desqer.AppointmentView do
   use Desqer.Web, :view
 
+  def render("index.json", %{appointments: appointments}) do
+    %{data: render_many(appointments, Desqer.AppointmentView, "appointment.json")}
+  end
+
   def render("show.json", %{appointment: appointment}) do
     %{data: %{appointment: render_one(appointment, Desqer.AppointmentView, "appointment.json")}}
   end

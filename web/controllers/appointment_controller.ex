@@ -8,6 +8,50 @@ defmodule Desqer.AppointmentController do
   plug :scrub_params, "appointment" when action in [:create, :update]
 
   @doc """
+  List `appointments`.
+
+  Endpoint example:
+
+      GET /appointments
+
+  Request headers example:
+
+      authorization: Bearer eyJhbGciOiJIUzUxMiI5c...
+
+  Success response `code 200` example:
+
+      {
+        "data": [
+          {
+            "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+            "user_id": "69f06156-7fc2-4c7f-abde-fc20204627e1",
+            "service_id": "9c1c0135-9cb7-41d6-9991-9c8042d31bc8",
+            "name": "Haircut",
+            "description": "The perfect hair style for your type of face",
+            "price": 4900,
+            "starts_at": "2017-03-10T15:30:00",
+            "ends_at": "2017-03-10T16:00:00",
+            "notes": "Hair massage bonus",
+            "status": "active"
+          }
+        ]
+      }
+
+  Error response `code 401` example:
+
+      {
+        "errors": {
+          "detail": "Resource not authorized"
+        }
+      }
+  """
+  def index(conn, params) do
+    appointments = Desqer.Filter.Appointment.list(current_user(conn), params)
+
+    render(conn, "index.json", appointments: appointments)
+  end
+
+  @doc """
   Creates `appointment` or `appointments`.
 
   Endpoint example:
