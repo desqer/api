@@ -23,6 +23,12 @@ defmodule Desqer.ServiceViewTest do
     deleted: false
   }
 
+  test "renders index.json" do
+    service = struct(Desqer.Service, @service_attrs)
+
+    assert render(Desqer.ServiceView, "index.json", services: [service]) == %{data: [@service_attrs]}
+  end
+
   test "renders show.json" do
     service = struct(Desqer.Service, @service_attrs)
 

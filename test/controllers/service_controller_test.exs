@@ -11,6 +11,11 @@ defmodule Desqer.ServiceControllerTest do
     {:ok, conn: conn, signed_conn: signed_conn, user: session.user}
   end
 
+  test "lists filtered entries", %{signed_conn: conn} do
+    conn = get conn, service_path(conn, :index)
+    assert json_response(conn, 200)["data"] == []
+  end
+
   test "creates and renders services", %{signed_conn: conn, user: user} do
     professional = insert(:professional, user: user)
     params = %{name: "Haircut", description: "Best haircut in the world", duration: 30, status: "active"}

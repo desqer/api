@@ -1,6 +1,16 @@
 defmodule Desqer.Filter.ServiceTest do
   use Desqer.ModelCase, async: true
 
+  test "lists services" do
+    service = insert(:service)
+
+    result = Desqer.Filter.Service.list(service.professional.user, %{})
+    result_ids = Enum.map(result, fn (r) -> r.id end)
+
+    assert length(result) == 1
+    assert service.id in result_ids
+  end
+
   test "#by_professional" do
     professional = insert(:professional, user: build(:user, phone: "554799871234"))
     other_professional = insert(:professional, venue: professional.venue)

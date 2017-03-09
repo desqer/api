@@ -9,6 +9,58 @@ defmodule Desqer.ServiceController do
   plug :scrub_params, "professional_ids" when action in [:create]
 
   @doc """
+  List `services`.
+
+  Endpoint example:
+
+      GET /services
+
+  Request headers example:
+
+      authorization: Bearer eyJhbGciOiJIUzUxMiI5c...
+
+  Success response `code 200` example:
+
+      {
+        "data": [
+          {
+            "id": "2050ea22-a273-4bef-93e9-ce9df0e73ddc",
+            "professional_id": "9c1c0135-9cb7-41d6-9991-9c8042d31bc8",
+            "name": "Haircut",
+            "description": "The perfect hair style for your type of face.",
+            "price": 4900,
+            "duration": 40,
+            "in_advance": 1,
+            "status": "active",
+            "need_approval": false,
+            "online_scheduling": true,
+            "sunday": [],
+            "monday": ["13:00-18:00"],
+            "tuesday": ["08:00-12:00", "13:00-18:00"],
+            "wednesday": ["08:00-12:00", "13:00-18:00"],
+            "thursday": ["08:00-12:00", "13:00-18:00"],
+            "friday": ["08:00-12:00"],
+            "saturday": [],
+            "deleted": false
+          }
+        ]
+      }
+
+  Error response `code 401` example:
+
+      {
+        "errors": {
+          "detail": "Resource not authorized"
+        }
+      }
+  """
+  def index(conn, params) do
+    services = Desqer.Filter.Service.list(current_user(conn), params)
+
+    render(conn, "index.json", services: services)
+  end
+
+  @doc """
   Creates `service`.
 
   Endpoint example:

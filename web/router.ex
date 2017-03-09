@@ -32,6 +32,7 @@ defmodule Desqer.Router do
 
     post "/professionals", ProfessionalController, :create
 
+    get "/services", ServiceController, :index
     post "/services", ServiceController, :create
     put "/services/:id", ServiceController, :update
     delete "/services/:id", ServiceController, :delete

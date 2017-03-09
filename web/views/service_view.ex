@@ -1,6 +1,10 @@
 defmodule Desqer.ServiceView do
   use Desqer.Web, :view
 
+  def render("index.json", %{services: services}) do
+    %{data: render_many(services, Desqer.ServiceView, "service.json")}
+  end
+
   def render("show.json", %{service: service}) do
     %{data: %{service: render_one(service, Desqer.ServiceView, "service.json")}}
   end

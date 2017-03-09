@@ -1,6 +1,10 @@
 defmodule Desqer.Filter.Service do
   import Ecto.Query
 
+  def list(_user, _params) do
+    Desqer.Service |> Desqer.Repo.all
+  end
+
   def by_professional(query, user_id) do
     from q in query,
     join: p in assoc(q, :professional),
