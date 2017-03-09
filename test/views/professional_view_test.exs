@@ -33,6 +33,13 @@ defmodule Desqer.ProfessionalViewTest do
       deleted: false}]
   }
 
+  @professional_attrs %{
+    id: "789",
+    role: "Hair slicer",
+    owner: true,
+    deleted: false
+  }
+
   test "renders show.json" do
     user = struct(Desqer.User, @user_attrs)
     user_data = %{@user_attrs | phone: @user_attrs.phone.full_number}
@@ -40,8 +47,9 @@ defmodule Desqer.ProfessionalViewTest do
     venue_phone = List.first(@venue_attrs.phones)
     venue_phone_data = %{venue_phone | value: venue_phone.value.full_number}
     venue_data = %{@venue_attrs | phones: [venue_phone_data]}
+    professional = struct(Desqer.Professional, @professional_attrs)
 
-    assert render(Desqer.ProfessionalView, "show.json", user: user, venue: venue) ==
-           %{data: %{user: user_data, venue: venue_data}}
+    assert render(Desqer.ProfessionalView, "show.json", user: user, venue: venue, professional: professional) ==
+           %{data: %{user: user_data, venue: venue_data, professional: @professional_attrs}}
   end
 end

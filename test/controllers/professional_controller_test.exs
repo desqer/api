@@ -32,6 +32,7 @@ defmodule Desqer.ProfessionalControllerTest do
 
     refute Enum.empty?(data["user"])
     refute Enum.empty?(data["venue"])
+    refute Enum.empty?(data["professional"])
   end
 
   test "renders errors on create when data is invalid", %{signed_conn: conn} do
