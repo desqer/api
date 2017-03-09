@@ -91,7 +91,7 @@
     <a href="#create/2">create(conn, map)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Creates <code class="inline">appointment</code></p>
+    <div class="summary-synopsis"><p>Creates <code class="inline">appointment</code> or <code class="inline">appointments</code></p>
 </div>
   
 </div>
@@ -137,12 +137,12 @@
     
   </div>
   <section class="docstring">
-    <p>Creates <code class="inline">appointment</code>.</p>
+    <p>Creates <code class="inline">appointment</code> or <code class="inline">appointments</code>.</p>
 <p>Endpoint example:</p>
 <pre><code class="elixir">POST /appointments</code></pre>
 <p>Request headers example:</p>
 <pre><code class="elixir">authorization: Bearer eyJhbGciOiJIUzUxMiI5c...</code></pre>
-<p>Params example:</p>
+<p>Params example by customer:</p>
 <pre><code class="elixir">{
   &quot;appointment&quot;: {
     &quot;service_id&quot;: &quot;80e9863b-61bc-45be-9f0e-9aebfb2dcec6&quot;,
@@ -151,12 +151,27 @@
     &quot;notes&quot;: &quot;Hair massage needed&quot;
   }
 }</code></pre>
+<p>Params example by professional:</p>
+<pre><code class="elixir">{
+  &quot;appointment&quot;: {
+    &quot;service_id&quot;: &quot;80e9863b-61bc-45be-9f0e-9aebfb2dcec6&quot;,
+    &quot;name&quot;: &quot;Haircut&quot;,
+    &quot;description&quot;: &quot;The perfect hair style for your type of face&quot;,
+    &quot;price&quot;: 4900,
+    &quot;starts_at&quot;: &quot;2017-03-10 15:30:00&quot;,
+    &quot;ends_at&quot;: &quot;2017-03-10 16:00:00&quot;,
+    &quot;notes&quot;: &quot;Hair massage bonus&quot;
+  },
+  &quot;user_ids&quot;: [
+    &quot;69f06156-7fc2-4c7f-abde-fc20204627e1&quot;
+  ]
+}</code></pre>
 <p>Params details:</p>
 <ul>
 <li><code class="inline">price</code> in cents
 </li>
 </ul>
-<p>Success response <code class="inline">code 200</code> example:</p>
+<p>Success response <code class="inline">code 200</code> example for customer:</p>
 <pre><code class="elixir">{
   &quot;data&quot;: {
     &quot;appointment&quot;: {
@@ -171,6 +186,25 @@
       &quot;notes&quot;: &quot;Hair massage needed&quot;,
       &quot;status&quot;: &quot;active&quot;
     }
+  }
+}</code></pre>
+<p>Success response <code class="inline">code 200</code> example for professional:</p>
+<pre><code class="elixir">{
+  &quot;data&quot;: {
+    &quot;appointments&quot;: [
+      {
+        &quot;id&quot;: &quot;2050ea22-a273-4bef-93e9-ce9df0e73ddc&quot;,
+        &quot;user_id&quot;: &quot;69f06156-7fc2-4c7f-abde-fc20204627e1&quot;,
+        &quot;service_id&quot;: &quot;9c1c0135-9cb7-41d6-9991-9c8042d31bc8&quot;,
+        &quot;name&quot;: &quot;Haircut&quot;,
+        &quot;description&quot;: &quot;The perfect hair style for your type of face&quot;,
+        &quot;price&quot;: 4900,
+        &quot;starts_at&quot;: &quot;2017-03-10T15:30:00&quot;,
+        &quot;ends_at&quot;: &quot;2017-03-10T16:00:00&quot;,
+        &quot;notes&quot;: &quot;Hair massage bonus&quot;,
+        &quot;status&quot;: &quot;active&quot;
+      }
+    ]
   }
 }</code></pre>
 <p>Error response <code class="inline">code 422</code> example:</p>
