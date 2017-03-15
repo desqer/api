@@ -12,6 +12,7 @@ defmodule Desqer.Filter.Appointment do
     join: s in assoc(q, :service),
     join: p in assoc(s, :professional),
     where: q.user_id == ^user_id,
-    or_where: p.user_id == ^user_id
+    or_where: p.user_id == ^user_id,
+    select: %{q | owned: p.user_id == ^user_id}
   end
 end

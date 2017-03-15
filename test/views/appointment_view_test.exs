@@ -12,7 +12,8 @@ defmodule Desqer.AppointmentViewTest do
     starts_at: "2017-03-12 14:30:0",
     ends_at: "2017-03-12 15:00:00",
     notes: "You'll gonna love it",
-    status: "active"
+    status: "active",
+    owned: true
   }
 
   test "renders index.json" do

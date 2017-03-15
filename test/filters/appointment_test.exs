@@ -20,6 +20,18 @@ defmodule Desqer.Filter.AppointmentTest do
     assert other_appointment.id in result_ids
   end
 
+  test "includes if it is owned by user" do
+    appointment = insert(:appointment)
+
+    [result] = Desqer.Filter.Appointment.list(appointment.user, %{})
+
+    refute result.owned
+
+    [result] = Desqer.Filter.Appointment.list(appointment.service.professional.user, %{})
+
+    assert result.owned
+  end
+
   test "#by_attendee" do
     user = insert(:user, phone: "554799871234")
     other_user = insert(:user, phone: "554799872211")

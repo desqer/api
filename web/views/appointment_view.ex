@@ -23,6 +23,7 @@ defmodule Desqer.AppointmentView do
       starts_at: appointment.starts_at,
       ends_at: appointment.ends_at,
       notes: appointment.notes,
-      status: appointment.status}
+      status: appointment.status,
+      owned: appointment.owned}
   end
 end

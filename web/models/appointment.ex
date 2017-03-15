@@ -13,6 +13,8 @@ defmodule Desqer.Appointment do
     field :notes, :string
     field :status, Desqer.Collection.AppointmentStatus
 
+    field :owned, :boolean, virtual: true
+
     timestamps()
   end
 end
