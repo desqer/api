@@ -32,7 +32,8 @@ defmodule Desqer.AppointmentController do
             "starts_at": "2017-03-10T15:30:00",
             "ends_at": "2017-03-10T16:00:00",
             "notes": "Hair massage bonus",
-            "status": "active"
+            "status": "active",
+            "owned": true
           }
         ]
       }
@@ -108,7 +109,8 @@ defmodule Desqer.AppointmentController do
             "starts_at": "2017-03-10T15:30:00",
             "ends_at": "2017-03-10T16:00:00",
             "notes": "Hair massage needed",
-            "status": "active"
+            "status": "active",
+            "owned": nil
           }
         }
       }
@@ -128,7 +130,8 @@ defmodule Desqer.AppointmentController do
               "starts_at": "2017-03-10T15:30:00",
               "ends_at": "2017-03-10T16:00:00",
               "notes": "Hair massage bonus",
-              "status": "active"
+              "status": "active",
+              "owned": nil
             }
           ]
         }
@@ -205,7 +208,8 @@ defmodule Desqer.AppointmentController do
             "starts_at": "2017-03-09 13:00",
             "ends_at": "2017-03-09 13:30",
             "notes": "Hair massage bonus and others",
-            "status": "canceled"
+            "status": "canceled",
+            "owned": nil
           }
         }
       }
