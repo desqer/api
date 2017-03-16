@@ -1,0 +1,60 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:22
+#: lib/desqer/collection.ex:23 lib/desqer/collection.ex:23
+msgid "active"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "blog"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "canceled"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "facebook"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "instagram"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "paused"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "pending"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "pinterest"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "snapchat"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "twitter"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "website"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "youtube"
+msgstr ""

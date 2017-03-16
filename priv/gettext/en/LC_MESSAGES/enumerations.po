@@ -1,0 +1,60 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:22
+#: lib/desqer/collection.ex:23 lib/desqer/collection.ex:23
+msgid "active"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "blog"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "canceled"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "facebook"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "instagram"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "paused"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "pending"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "pinterest"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "snapchat"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "twitter"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "website"
+msgstr ""
+
+#: lib/desqer/collection.ex:22 lib/desqer/collection.ex:23
+msgid "youtube"
+msgstr ""
