@@ -3,6 +3,7 @@ defmodule Desqer.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Desqer.Plug.Locale, "pt_BR"
   end
 
   pipeline :api_auth do
