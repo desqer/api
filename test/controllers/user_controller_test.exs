@@ -18,6 +18,13 @@ defmodule Desqer.UserControllerTest do
     assert data["user"]["name"] == user.name
   end
 
+  test "renders error when phone is invalid", %{conn: conn} do
+    conn = get conn, user_path(conn, :preview, "123")
+    errors = json_response(conn, 422)["errors"]
+
+    refute Enum.empty?(errors)
+  end
+
   test "renders not found when user does not exist", %{conn: conn} do
     assert_error_sent 404, fn ->
       get conn, user_path(conn, :preview, "5547999871234")

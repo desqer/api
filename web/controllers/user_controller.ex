@@ -25,6 +25,14 @@ defmodule Desqer.UserController do
         }
       }
 
+  Error response `code 422` example:
+
+      {
+        "errors": {
+          "phone": ["is invalid"]
+        }
+      }
+
   Error response `code 404` example:
 
       {
@@ -34,8 +42,10 @@ defmodule Desqer.UserController do
       }
   """
   def preview(conn, %{"phone" => phone}) do
-    user = Desqer.User |> Desqer.Repo.get_by!(phone: phone)
-    render(conn, "preview.json", user: user)
+    case Desqer.Filter.User.get(phone) do
+      {:ok, user} -> render(conn, "preview.json", user: user)
+      {:error, changeset} -> render_error(conn, changeset)
+    end
   end
 
   @doc """
