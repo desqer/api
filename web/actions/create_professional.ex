@@ -45,7 +45,7 @@ defmodule Desqer.Action.CreateProfessional do
 
   defp validate_not_profissional(changeset, user) do
     if user.professional,
-      do: add_error(changeset, :professional, "has already been set up"),
+      do: add_error(changeset, :professional, "has already been taken"),
       else: changeset
   end
 

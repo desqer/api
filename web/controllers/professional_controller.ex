@@ -84,7 +84,7 @@ defmodule Desqer.ProfessionalController do
 
       {
         "errors": {
-          "professional": ["has already been set up"]
+          "professional": ["has already been taken"]
         }
       }
 

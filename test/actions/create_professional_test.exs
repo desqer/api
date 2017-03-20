@@ -5,7 +5,7 @@ defmodule Desqer.Action.CreateProfessionalTest do
     user = insert(:user)
     {:error, _, changeset, _} = Desqer.Action.CreateProfessional.run(user, %{}, %{})
 
-    assert {:professional, {"has already been set up", []}} in changeset.errors
+    assert {:professional, {"has already been taken", []}} in changeset.errors
     refute changeset.valid?
   end
 
