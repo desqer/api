@@ -4,7 +4,7 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-ceb16570cb.js
+dist/sidebar_items-3674ff5ab6.js
 api-reference.html
 index.html
 404.html
@@ -35,6 +35,7 @@ Desqer.ErrorView.html
 Desqer.Filter.Appointment.html
 Desqer.Filter.Professional.html
 Desqer.Filter.Service.html
+Desqer.Filter.User.html
 Desqer.Gettext.html
 Desqer.GuardianHandler.html
 Desqer.GuardianSerializer.html
