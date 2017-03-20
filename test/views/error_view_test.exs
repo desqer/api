@@ -6,12 +6,12 @@ defmodule Desqer.ErrorViewTest do
 
   test "renders 401.json" do
     assert render(Desqer.ErrorView, "401.json", []) ==
-           %{errors: %{detail: "Resource not authorized"}}
+           %{errors: %{detail: "Not authorized"}}
   end
 
   test "renders 404.json" do
     assert render(Desqer.ErrorView, "404.json", []) ==
-           %{errors: %{detail: "Resource not found"}}
+           %{errors: %{detail: "Not found"}}
   end
 
   test "render 500.json" do

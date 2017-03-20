@@ -29,7 +29,7 @@ defmodule Desqer.UserController do
 
       {
         "errors": {
-          "detail": "Resource not found"
+          "detail": "Not found"
         }
       }
   """
@@ -70,7 +70,7 @@ defmodule Desqer.UserController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """
@@ -181,7 +181,7 @@ defmodule Desqer.UserController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """
@@ -224,7 +224,7 @@ defmodule Desqer.UserController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """

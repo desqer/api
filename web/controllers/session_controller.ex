@@ -86,7 +86,7 @@ defmodule Desqer.SessionController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """

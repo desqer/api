@@ -91,3 +91,15 @@ msgstr ""
 
 msgid "must be equal to %{number}"
 msgstr ""
+
+#: web/views/error_view.ex:13
+msgid "Internal server error"
+msgstr ""
+
+#: web/views/error_view.ex:5
+msgid "Not authorized"
+msgstr ""
+
+#: web/views/error_view.ex:9
+msgid "Not found"
+msgstr ""

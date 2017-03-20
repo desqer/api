@@ -9,13 +9,13 @@ defmodule Desqer.GuardianHandlerTest do
     conn = Desqer.GuardianHandler.unauthenticated(conn, %{})
     errors = json_response(conn, 401)["errors"]
 
-    assert errors["detail"] == "Resource not authorized"
+    assert errors["detail"] == "Not authorized"
   end
 
   test "renders errors on no_resource", %{conn: conn} do
     conn = Desqer.GuardianHandler.no_resource(conn, %{})
     errors = json_response(conn, 401)["errors"]
 
-    assert errors["detail"] == "Resource not authorized"
+    assert errors["detail"] == "Not authorized"
   end
 end

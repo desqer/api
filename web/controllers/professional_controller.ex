@@ -92,7 +92,7 @@ defmodule Desqer.ProfessionalController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """

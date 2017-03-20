@@ -42,7 +42,7 @@ defmodule Desqer.AppointmentController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """
@@ -150,7 +150,7 @@ defmodule Desqer.AppointmentController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """
@@ -226,7 +226,7 @@ defmodule Desqer.AppointmentController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """

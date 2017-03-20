@@ -81,3 +81,15 @@ msgstr "deve ser maior ou igual a %{number}"
 
 msgid "must be equal to %{number}"
 msgstr "deve ser igual a %{number}"
+
+#: web/views/error_view.ex:13
+msgid "Internal server error"
+msgstr "Erro no servidor"
+
+#: web/views/error_view.ex:5
+msgid "Not authorized"
+msgstr "Não autorizado"
+
+#: web/views/error_view.ex:9
+msgid "Not found"
+msgstr "Não encontrado"

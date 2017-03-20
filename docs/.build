@@ -4,7 +4,7 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-f940f42632.js
+dist/sidebar_items-ceb16570cb.js
 api-reference.html
 index.html
 404.html
@@ -43,6 +43,7 @@ Desqer.LinkView.html
 Desqer.Password.html
 Desqer.Phone.html
 Desqer.PhoneView.html
+Desqer.Plug.Locale.html
 Desqer.Professional.html
 Desqer.ProfessionalController.html
 Desqer.ProfessionalView.html

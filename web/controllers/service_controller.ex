@@ -50,7 +50,7 @@ defmodule Desqer.ServiceController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """
@@ -147,7 +147,7 @@ defmodule Desqer.ServiceController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """
@@ -240,7 +240,7 @@ defmodule Desqer.ServiceController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """
@@ -293,7 +293,7 @@ defmodule Desqer.ServiceController do
 
       {
         "errors": {
-          "detail": "Resource not authorized"
+          "detail": "Not authorized"
         }
       }
   """
