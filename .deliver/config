@@ -4,11 +4,11 @@ APP="desqer"
 
 BUILD_HOST="api.desqer.com"
 BUILD_USER="desqer"
-BUILD_AT="/home/desqer/api/source/"
+BUILD_AT="/home/desqer/api/source"
 
 PRODUCTION_HOSTS="api.desqer.com"
 PRODUCTION_USER="desqer"
-DELIVER_TO="/home/desqer/api/"
+DELIVER_TO="/home/desqer/api"
 
 pre_erlang_get_and_update_deps() {
   local _prod_secret_path="/home/desqer/api/shared/prod.secret.exs"
