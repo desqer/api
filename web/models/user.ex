@@ -6,18 +6,18 @@ defmodule Desqer.User do
     has_many :professionals, Desqer.Professional
 
     field :phone, Desqer.Type.Phone
-    field :password_hash, :string
-    field :name, :string
-    field :email, :string
-    field :bio, :string
+    field :password_hash, Desqer.Type.String
+    field :name, Desqer.Type.String
+    field :email, Desqer.Type.String
+    field :bio, Desqer.Type.String
     field :professional, :boolean, default: false
-    field :token, :string
+    field :token, Desqer.Type.String
     field :token_sent_at, Ecto.DateTime
     field :confirmed, :boolean, default: false
     field :deleted, :boolean, default: false
 
-    field :password, :string, virtual: true
-    field :current_password, :string, virtual: true
+    field :password, Desqer.Type.String, virtual: true
+    field :current_password, Desqer.Type.String, virtual: true
 
     timestamps()
   end

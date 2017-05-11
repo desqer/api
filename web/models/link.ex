@@ -5,8 +5,8 @@ defmodule Desqer.Link do
     belongs_to :venue, Desqer.Venue
 
     field :type, Desqer.Collection.LinkType
-    field :name, :string
-    field :url, :string
+    field :name, Desqer.Type.String
+    field :url, Desqer.Type.String
     field :deleted, :boolean, default: false
 
     timestamps()

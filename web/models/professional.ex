@@ -7,7 +7,7 @@ defmodule Desqer.Professional do
 
     has_many :services, Desqer.Service
 
-    field :role, :string
+    field :role, Desqer.Type.String
     field :owner, :boolean, default: false
     field :deleted, :boolean, default: false
 

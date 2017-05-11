@@ -4,7 +4,7 @@ defmodule Desqer.Phone do
   schema "phones" do
     belongs_to :venue, Desqer.Venue
 
-    field :type, :string
+    field :type, Desqer.Type.String
     field :value, Desqer.Type.Phone
     field :deleted, :boolean, default: false
 

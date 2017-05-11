@@ -8,10 +8,10 @@ defmodule Desqer.Venue do
 
     has_many :services, through: [:professionals, :services]
 
-    field :name, :string
+    field :name, Desqer.Type.String
     field :lat, :float
     field :lon, :float
-    field :address, :string
+    field :address, Desqer.Type.String
     field :deleted, :boolean, default: false
 
     timestamps()

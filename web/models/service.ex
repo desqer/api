@@ -4,8 +4,8 @@ defmodule Desqer.Service do
   schema "services" do
     belongs_to :professional, Desqer.Professional
 
-    field :name, :string
-    field :description, :string
+    field :name, Desqer.Type.String
+    field :description, Desqer.Type.String
     field :price, :integer
     field :duration, :integer
     field :in_advance, :integer
