@@ -32,7 +32,7 @@ defmodule Desqer.Action.CreateSession do
 
   defp authenticate(%{changes: %{user: %{data: user}, password: password}} = changeset) do
     case Desqer.Password.check(password, user.password_hash) do
-      false -> add_error(changeset, :user, "not authorized")
+      false -> add_error(changeset, :password, "not authorized")
       true  -> changeset
     end
   end

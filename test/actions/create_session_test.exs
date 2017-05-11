@@ -24,9 +24,9 @@ defmodule Desqer.Action.CreateSessionTest do
   test "returns error when password is incorrect" do
     insert(:user)
 
-    {:error, changeset} = Desqer.Action.CreateSession.run(%{@valid_attrs | "phone" => "5511999874321"}, nil, nil)
+    {:error, changeset} = Desqer.Action.CreateSession.run(%{@valid_attrs | "password" => "4321"}, nil, nil)
 
-    assert {:user, {"not authorized", []}} in changeset.errors
+    assert {:password, {"not authorized", []}} in changeset.errors
     refute changeset.valid?
   end
 
