@@ -39,6 +39,8 @@ defmodule Desqer.Mixfile do
      {:comeonin, "~> 3.0"},
      {:guardian, "~> 0.14"},
      {:phone, "~> 0.3"},
+     {:timex, "~> 3.1"},
+     {:timex_ecto, "~> 3.1"},
      {:edeliver, "~> 1.4"},
      {:distillery, "~> 1.2"},
      {:ex_doc, "~> 0.14", only: :dev},
@@ -60,6 +62,6 @@ defmodule Desqer.Mixfile do
      "ecto.reset": ["ecto.drop", "ecto.setup"],
      "test": ["ecto.create --quiet", "ecto.migrate", "test"],
      "gettext.run": ["gettext.extract", "gettext.merge priv/gettext/"],
-     "deploy": ["edeliver upgrade production --run-migrations --start-deploy"]]
+     "deploy": ["edeliver update production --run-migrations --start-deploy"]]
   end
 end

@@ -24,15 +24,15 @@ defmodule Desqer.Action.UpdateAppointmentTest do
     appointment = insert(:appointment)
 
     params = %{
-      "starts_at" => %Ecto.DateTime{year: 2017, month: 3, day: 1, hour: 9, min: 0, sec: 0},
-      "ends_at" => %Ecto.DateTime{year: 2017, month: 3, day: 1, hour: 9, min: 30, sec: 0},
+      "starts_at" => ~N[2017-03-01 09:00:00],
+      "ends_at" => ~N[2017-03-01 09:30:00],
       "status" => Desqer.Collection.AppointmentStatus.canceled
     }
 
     {:ok, appointment} = Desqer.Action.UpdateAppointment.run(appointment.user, appointment.id, params)
 
-    assert appointment.starts_at == params["starts_at"]
-    assert appointment.ends_at == params["ends_at"]
+    assert appointment.starts_at == Timex.to_datetime(params["starts_at"])
+    assert appointment.ends_at == Timex.to_datetime(params["ends_at"])
     assert appointment.status == params["status"]
   end
 end

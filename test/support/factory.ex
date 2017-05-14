@@ -79,8 +79,8 @@ defmodule Desqer.Factory do
       name: "Hair Cute Cut",
       description: "Fancy style for your hair",
       price: 3900,
-      starts_at: %Ecto.DateTime{year: 2017, month: 3, day: 12, hour: 13, min: 0, sec: 0},
-      ends_at: %Ecto.DateTime{year: 2017, month: 3, day: 12, hour: 13, min: 30, sec: 0},
+      starts_at: ~N[2017-03-12 13:00:00],
+      ends_at: ~N[2017-03-12 13:30:00],
       notes: "Some client specific issues",
       status: Desqer.Collection.AppointmentStatus.active
     }

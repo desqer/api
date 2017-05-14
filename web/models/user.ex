@@ -12,7 +12,7 @@ defmodule Desqer.User do
     field :bio, Desqer.Type.String
     field :professional, :boolean, default: false
     field :token, Desqer.Type.String
-    field :token_sent_at, Ecto.DateTime
+    field :token_sent_at, Timex.Ecto.DateTime
     field :confirmed, :boolean, default: false
     field :deleted, :boolean, default: false
 

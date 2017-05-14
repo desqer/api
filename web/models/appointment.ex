@@ -8,8 +8,8 @@ defmodule Desqer.Appointment do
     field :name, Desqer.Type.String
     field :description, Desqer.Type.String
     field :price, :integer
-    field :starts_at, Ecto.DateTime
-    field :ends_at, Ecto.DateTime
+    field :starts_at, Timex.Ecto.DateTime
+    field :ends_at, Timex.Ecto.DateTime
     field :notes, Desqer.Type.String
     field :status, Desqer.Collection.AppointmentStatus
 

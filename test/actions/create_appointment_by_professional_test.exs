@@ -56,8 +56,8 @@ defmodule Desqer.Action.CreateAppointmentByProfessionalTest do
     invalid_user_id = "11111111-1111-1111-1111-111111111111"
     params = %{
       "service_id" => service.id,
-      "starts_at" => "2017-03-01 09:00:00",
-      "ends_at" => "2017-03-01 09:30:00"
+      "starts_at" => ~N[2017-03-01 09:00:00],
+      "ends_at" => ~N[2017-03-01 09:30:00]
     }
 
     {:error, _, changeset, _} = Desqer.Action.CreateAppointmentByProfessional.run(service.professional.user, [invalid_user_id], params)
@@ -75,8 +75,8 @@ defmodule Desqer.Action.CreateAppointmentByProfessionalTest do
       "name" => "Super Haircut",
       "description" => "An awsome hair style",
       "price" => 2700,
-      "starts_at" => %Ecto.DateTime{year: 2017, month: 3, day: 1, hour: 9, min: 0, sec: 0},
-      "ends_at" => %Ecto.DateTime{year: 2017, month: 3, day: 1, hour: 9, min: 30, sec: 0},
+      "starts_at" => ~N[2017-03-01 09:00:00],
+      "ends_at" => ~N[2017-03-01 09:30:00],
       "notes" => "Hair wash bonus"
     }
 
@@ -87,8 +87,8 @@ defmodule Desqer.Action.CreateAppointmentByProfessionalTest do
     assert appointment.name == params["name"]
     assert appointment.description == params["description"]
     assert appointment.price == params["price"]
-    assert appointment.starts_at == params["starts_at"]
-    assert appointment.ends_at == params["ends_at"]
+    assert appointment.starts_at == Timex.to_datetime(params["starts_at"])
+    assert appointment.ends_at == Timex.to_datetime(params["ends_at"])
     assert appointment.notes == params["notes"]
     assert appointment.status == Desqer.Collection.AppointmentStatus.active
   end

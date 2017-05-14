@@ -48,8 +48,8 @@ defmodule Desqer.Action.CreateAppointmentTest do
 
     params = %{
       "service_id" => service.id,
-      "starts_at" => %Ecto.DateTime{year: 2017, month: 3, day: 1, hour: 9, min: 0, sec: 0},
-      "ends_at" => %Ecto.DateTime{year: 2017, month: 3, day: 1, hour: 9, min: 30, sec: 0},
+      "starts_at" => ~N[2017-03-01 09:00:00],
+      "ends_at" => ~N[2017-03-01 09:30:00],
       "notes" => "Hair wash needed"
     }
 
@@ -57,8 +57,8 @@ defmodule Desqer.Action.CreateAppointmentTest do
 
     assert appointment.user_id == user.id
     assert appointment.service_id == service.id
-    assert appointment.starts_at == params["starts_at"]
-    assert appointment.ends_at == params["ends_at"]
+    assert appointment.starts_at == Timex.to_datetime(params["starts_at"])
+    assert appointment.ends_at == Timex.to_datetime(params["ends_at"])
     assert appointment.notes == params["notes"]
     assert appointment.status == Desqer.Collection.AppointmentStatus.active
   end
