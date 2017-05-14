@@ -4,6 +4,8 @@ defmodule Desqer.Filter.Appointment do
   def list(user, _params) do
     Desqer.Appointment
     |> by_attendee(user.id)
+    |> in_future
+    |> order_by_date
     |> Desqer.Repo.all
   end
 
@@ -14,5 +16,15 @@ defmodule Desqer.Filter.Appointment do
     where: q.user_id == ^user_id,
     or_where: p.user_id == ^user_id,
     select: %{q | owned: p.user_id == ^user_id}
+  end
+
+  def in_future(query) do
+    from q in query,
+    where: q.starts_at >= ^DateTime.utc_now
+  end
+
+  def order_by_date(query) do
+    from q in query,
+    order_by: q.starts_at
   end
 end

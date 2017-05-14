@@ -9,8 +9,9 @@ defmodule Desqer.AppointmentViewTest do
     name: "Hair Cut",
     description: "A better version of you.",
     price: 4200,
-    starts_at: "2017-03-12 14:30:0",
-    ends_at: "2017-03-12 15:00:00",
+    date: "2017-03-12",
+    starts_at: ~N[2017-03-12 14:30:00],
+    ends_at: ~N[2017-03-12 15:00:00],
     notes: "You'll gonna love it",
     status: "active",
     owned: true
@@ -19,7 +20,7 @@ defmodule Desqer.AppointmentViewTest do
   test "renders index.json" do
     appointment = struct(Desqer.Appointment, @appointment_attrs)
 
-    assert render(Desqer.AppointmentView, "index.json", appointments: [appointment]) == %{data: [@appointment_attrs]}
+    assert render(Desqer.AppointmentView, "index.json", appointments: [appointment]) == %{data: %{"2017-03-12" => [@appointment_attrs]}}
   end
 
   test "renders show.json" do
