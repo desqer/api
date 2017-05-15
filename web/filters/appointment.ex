@@ -6,6 +6,7 @@ defmodule Desqer.Filter.Appointment do
     |> by_attendee(user.id)
     |> in_future
     |> order_by_date
+    |> with_service_info
     |> Desqer.Repo.all
   end
 
@@ -26,5 +27,10 @@ defmodule Desqer.Filter.Appointment do
   def order_by_date(query) do
     from q in query,
     order_by: q.starts_at
+  end
+
+  def with_service_info(query) do
+    from q in query,
+    preload: [service: [professional: [:user, :venue]]]
   end
 end
